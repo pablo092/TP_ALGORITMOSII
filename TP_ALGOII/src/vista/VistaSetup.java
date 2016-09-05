@@ -111,6 +111,8 @@ public class VistaSetup extends VistaAbstracta {
 		comboConfigs.setBounds(167, 59, 275, 20);
 		comboConfigs.setEditable(true);
 
+		settearVisibilidad(false);
+		
 		frmBasheador.getContentPane().setLayout(null);
 		frmBasheador.getContentPane().add(lblConfig);
 		frmBasheador.getContentPane().add(comboConfigs);
@@ -132,6 +134,25 @@ public class VistaSetup extends VistaAbstracta {
 		frmBasheador.getContentPane().add(btnImagen);
 		frmBasheador.getContentPane().add(btnVideo);
 		frmBasheador.getContentPane().add(btnDestino);
+	}
+	
+	public void mostrarParametros(){
+		settearVisibilidad(true);
+	}
+	public void ocultarParametros(){
+		settearVisibilidad(false);
+	}
+	
+	private void settearVisibilidad(Boolean bool){
+		lblAudio.setVisible(bool);
+		lblImagen.setVisible(bool);
+		lblVideo.setVisible(bool);
+		tfAudio.setVisible(bool);
+		tfImagen.setVisible(bool);
+		tfVideo.setVisible(bool);
+		btnAudio.setVisible(bool);
+		btnImagen.setVisible(bool);
+		btnVideo.setVisible(bool);
 	}
 
 	public JFrame getFrmBasheador() {
