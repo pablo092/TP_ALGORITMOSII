@@ -34,6 +34,12 @@ public class VistaSetup extends VistaAbstracta {
 	private JButton btnImagen;
 	private JButton btnVideo;
 	private JButton btnDestino;
+	
+	//Video extract
+	private JLabel lblInicio;
+	private JLabel lblFinal;
+	private JTextField tfInicio;
+	private JTextField tfFinal;
 
 	/**
 	 * Create the application.
@@ -110,8 +116,24 @@ public class VistaSetup extends VistaAbstracta {
 		comboConfigs = new JComboBox<String>();
 		comboConfigs.setBounds(167, 59, 275, 20);
 		comboConfigs.setEditable(true);
+		
+		//Video Extract//
+		lblInicio = new JLabel("Inicio:");
+		lblInicio.setBounds(73, 122, 46, 14);
 
-		settearVisibilidad(false);
+		lblFinal = new JLabel("Final:");
+		lblFinal.setBounds(73, 162, 46, 14);
+		
+		tfInicio = new JTextField();
+		tfInicio.setBounds(129, 119, 222, 20);
+		tfInicio.setColumns(10);
+
+		tfFinal = new JTextField();
+		tfFinal.setColumns(10);
+		tfFinal.setBounds(129, 159, 222, 20);
+
+		settearVisibilidadAV(false);
+		settearVisibilidadVE(false);
 		
 		frmBasheador.getContentPane().setLayout(null);
 		frmBasheador.getContentPane().add(lblConfig);
@@ -134,16 +156,29 @@ public class VistaSetup extends VistaAbstracta {
 		frmBasheador.getContentPane().add(btnImagen);
 		frmBasheador.getContentPane().add(btnVideo);
 		frmBasheador.getContentPane().add(btnDestino);
+		
+		frmBasheador.getContentPane().add(lblInicio);
+		frmBasheador.getContentPane().add(lblFinal);
+		frmBasheador.getContentPane().add(tfInicio);
+		frmBasheador.getContentPane().add(tfFinal);
 	}
 	
-	public void mostrarParametros(){
-		settearVisibilidad(true);
-	}
-	public void ocultarParametros(){
-		settearVisibilidad(false);
+	public void mostrarParametros(Integer caso){
+		switch(caso){
+		case 2: settearVisibilidadVE(false); 
+			    settearVisibilidadAV(true);
+				break;
+		case 3: settearVisibilidadAV(false);
+				settearVisibilidadVE(true);
+				break;
+		default: settearVisibilidadAV(false);
+				 settearVisibilidadVE(false);
+				 break;
+			
+		}
 	}
 	
-	private void settearVisibilidad(Boolean bool){
+	private void settearVisibilidadAV(Boolean bool){
 		lblAudio.setVisible(bool);
 		lblImagen.setVisible(bool);
 		lblVideo.setVisible(bool);
@@ -152,6 +187,15 @@ public class VistaSetup extends VistaAbstracta {
 		tfVideo.setVisible(bool);
 		btnAudio.setVisible(bool);
 		btnImagen.setVisible(bool);
+		btnVideo.setVisible(bool);
+	}
+	private void settearVisibilidadVE(Boolean bool){
+		lblInicio.setVisible(bool);
+		lblFinal.setVisible(bool);
+		tfInicio.setVisible(bool);
+		tfFinal.setVisible(bool);
+		lblVideo.setVisible(bool);
+		tfVideo.setVisible(bool);
 		btnVideo.setVisible(bool);
 	}
 

@@ -37,12 +37,15 @@ public class ControladorSetup extends ControladorAbstracto {
 			((VistaSetup) vista).getFrmBasheador().setTitle((String) ((VistaSetup) vista).getComboAPIs().getSelectedItem());
 			loadConfigs();
 		}
-		if(((VistaSetup) vista).getComboAPIs().getSelectedIndex()==1){
-			((VistaSetup) vista).mostrarParametros();
-			((VistaSetup) vista).getBtnAudio().addActionListener(this);
-			((VistaSetup) vista).getBtnImagen().addActionListener(this);
-			((VistaSetup) vista).getBtnVideo().addActionListener(this);
-		}else{((VistaSetup) vista).ocultarParametros();}
+		if(((VistaSetup) vista).getComboAPIs().getSelectedItem().equals("Audio to Video")){
+			((VistaSetup) vista).mostrarParametros(2);
+		}
+		if(((VistaSetup) vista).getComboAPIs().getSelectedItem().equals("Video Extract")){
+			((VistaSetup) vista).mostrarParametros(3);
+		}
+		if(((VistaSetup) vista).getComboAPIs().getSelectedItem().equals("API1")){
+			((VistaSetup) vista).mostrarParametros(1);
+		}
 		if(event.getSource() == ((VistaSetup) vista).getComboConfigs()) {
 			loadParametersPanel();
 		}
@@ -89,7 +92,7 @@ public class ControladorSetup extends ControladorAbstracto {
 	private void loadAPIs() {
 		((VistaSetup) vista).getComboAPIs().addItem("API1");
 		((VistaSetup) vista).getComboAPIs().addItem("Audio to Video");
-		((VistaSetup) vista).getComboAPIs().addItem("API3");
+		((VistaSetup) vista).getComboAPIs().addItem("Video Extract");
 	}
 	
 	private void loadConfigs() {
