@@ -21,25 +21,20 @@ public class VistaSetup extends VistaAbstracta {
 	private GroupLayout groupLayout;
 	private JLabel lblAplicacion;
 	private JLabel lblConfig;
-	private JLabel lblAudio;
-	private JLabel lblImagen;
-	private JLabel lblVideo;
+	private JLabel lblCampo1;
+	private JLabel lblCampo2;
+	private JLabel lblCampo3;
 	private JLabel lblDestino;
 	private JPanel panelParametros;
-	private JTextField tfAudio;
-	private JTextField tfImagen;
-	private JTextField tfVideo;
-	private JTextField tfDestiino;
-	private JButton btnAudio;
-	private JButton btnImagen;
-	private JButton btnVideo;
+	private JTextField tfCampo1;
+	private JTextField tfCampo2;
+	private JTextField tfCampo3;
+	private JTextField tfDestino;
+	private JButton btnCampo1;
+	private JButton btnCampo2;
+	private JButton btnCampo3;
 	private JButton btnDestino;
 	
-	//Video extract
-	private JLabel lblInicio;
-	private JLabel lblFinal;
-	private JTextField tfInicio;
-	private JTextField tfFinal;
 
 	/**
 	 * Create the application.
@@ -64,43 +59,43 @@ public class VistaSetup extends VistaAbstracta {
 		btnComenzar = new JButton("Comenzar");
 		btnComenzar.setBounds(353, 323, 108, 23);
 
-		lblAudio = new JLabel("Audio:");
-		lblAudio.setBounds(73, 122, 46, 14);
+		lblCampo1 = new JLabel("");
+		lblCampo1.setBounds(73, 122, 46, 14);
 
-		lblImagen = new JLabel("Imagen:");
-		lblImagen.setBounds(73, 162, 46, 14);
+		lblCampo2 = new JLabel("");
+		lblCampo2.setBounds(73, 162, 46, 14);
 
-		lblVideo = new JLabel("Video:");
-		lblVideo.setBounds(73, 207, 46, 14);
+		lblCampo3 = new JLabel("");
+		lblCampo3.setBounds(73, 207, 46, 14);
 
 		lblDestino = new JLabel("Destino:");
 		lblDestino.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		lblDestino.setBounds(43, 267, 67, 17);
 
-		tfAudio = new JTextField();
-		tfAudio.setBounds(129, 119, 222, 20);
-		tfAudio.setColumns(10);
+		tfCampo1 = new JTextField();
+		tfCampo1.setBounds(129, 119, 222, 20);
+		tfCampo1.setColumns(10);
 
-		tfImagen = new JTextField();
-		tfImagen.setColumns(10);
-		tfImagen.setBounds(129, 159, 222, 20);
+		tfCampo2 = new JTextField();
+		tfCampo2.setColumns(10);
+		tfCampo2.setBounds(129, 159, 222, 20);
 
-		tfVideo = new JTextField();
-		tfVideo.setColumns(10);
-		tfVideo.setBounds(129, 204, 222, 20);
+		tfCampo3 = new JTextField();
+		tfCampo3.setColumns(10);
+		tfCampo3.setBounds(129, 204, 222, 20);
 
-		tfDestiino = new JTextField();
-		tfDestiino.setColumns(10);
-		tfDestiino.setBounds(120, 267, 222, 20);
+		tfDestino = new JTextField();
+		tfDestino.setColumns(10);
+		tfDestino.setBounds(120, 267, 222, 20);
 
-		btnAudio = new JButton(">>");
-		btnAudio.setBounds(375, 118, 67, 23);
+		btnCampo1 = new JButton(">>");
+		btnCampo1.setBounds(375, 118, 67, 23);
 
-		btnImagen = new JButton(">>");
-		btnImagen.setBounds(375, 158, 67, 23);
+		btnCampo2 = new JButton(">>");
+		btnCampo2.setBounds(375, 158, 67, 23);
 
-		btnVideo = new JButton(">>");
-		btnVideo.setBounds(375, 203, 67, 23);
+		btnCampo3 = new JButton(">>");
+		btnCampo3.setBounds(375, 203, 67, 23);
 
 		btnDestino = new JButton("Seleccionar");
 		btnDestino.setBounds(353, 266, 118, 23);
@@ -116,21 +111,6 @@ public class VistaSetup extends VistaAbstracta {
 		comboConfigs = new JComboBox<String>();
 		comboConfigs.setBounds(167, 59, 275, 20);
 		comboConfigs.setEditable(true);
-		
-		//Video Extract//
-		lblInicio = new JLabel("Inicio:");
-		lblInicio.setBounds(73, 122, 46, 14);
-
-		lblFinal = new JLabel("Final:");
-		lblFinal.setBounds(73, 162, 46, 14);
-		
-		tfInicio = new JTextField();
-		tfInicio.setBounds(129, 119, 222, 20);
-		tfInicio.setColumns(10);
-
-		tfFinal = new JTextField();
-		tfFinal.setColumns(10);
-		tfFinal.setBounds(129, 159, 222, 20);
 
 		settearVisibilidadAV(false);
 		settearVisibilidadVE(false);
@@ -144,59 +124,71 @@ public class VistaSetup extends VistaAbstracta {
 
 		// SACAR DE ACA!!!
 
-		frmBasheador.getContentPane().add(lblAudio);
-		frmBasheador.getContentPane().add(lblImagen);
-		frmBasheador.getContentPane().add(lblVideo);
+		frmBasheador.getContentPane().add(lblCampo1);
+		frmBasheador.getContentPane().add(lblCampo2);
+		frmBasheador.getContentPane().add(lblCampo3);
 		frmBasheador.getContentPane().add(lblDestino);
-		frmBasheador.getContentPane().add(tfAudio);
-		frmBasheador.getContentPane().add(tfImagen);
-		frmBasheador.getContentPane().add(tfVideo);
-		frmBasheador.getContentPane().add(tfDestiino);
-		frmBasheador.getContentPane().add(btnAudio);
-		frmBasheador.getContentPane().add(btnImagen);
-		frmBasheador.getContentPane().add(btnVideo);
+		frmBasheador.getContentPane().add(tfCampo1);
+		frmBasheador.getContentPane().add(tfCampo2);
+		frmBasheador.getContentPane().add(tfCampo3);
+		frmBasheador.getContentPane().add(tfDestino);
+		frmBasheador.getContentPane().add(btnCampo1);
+		frmBasheador.getContentPane().add(btnCampo2);
+		frmBasheador.getContentPane().add(btnCampo3);
 		frmBasheador.getContentPane().add(btnDestino);
-		
-		frmBasheador.getContentPane().add(lblInicio);
-		frmBasheador.getContentPane().add(lblFinal);
-		frmBasheador.getContentPane().add(tfInicio);
-		frmBasheador.getContentPane().add(tfFinal);
 	}
 	
 	public void mostrarParametros(Integer caso){
+		settearVisibilidadVE(false); 
+		settearVisibilidadAV(false);
+		settearVisibilidadJW(false);
 		switch(caso){
-		case 2: settearVisibilidadVE(false); 
-			    settearVisibilidadAV(true);
+		case 2: settearVisibilidadAV(true);
 				break;
-		case 3: settearVisibilidadAV(false);
-				settearVisibilidadVE(true);
+		case 3: settearVisibilidadVE(true);
 				break;
-		default: settearVisibilidadAV(false);
-				 settearVisibilidadVE(false);
-				 break;
+		case 4: settearVisibilidadJW(true);
+				break;
+		default: break;		 
 			
 		}
 	}
 	
 	private void settearVisibilidadAV(Boolean bool){
-		lblAudio.setVisible(bool);
-		lblImagen.setVisible(bool);
-		lblVideo.setVisible(bool);
-		tfAudio.setVisible(bool);
-		tfImagen.setVisible(bool);
-		tfVideo.setVisible(bool);
-		btnAudio.setVisible(bool);
-		btnImagen.setVisible(bool);
-		btnVideo.setVisible(bool);
+		lblCampo1.setText("Audio:");
+		lblCampo1.setVisible(bool);
+		lblCampo2.setText("Imagen:");
+		lblCampo2.setVisible(bool);
+		lblCampo3.setText("Video:");
+		lblCampo3.setVisible(bool);
+		tfCampo1.setVisible(bool);
+		tfCampo2.setVisible(bool);
+		tfCampo3.setVisible(bool);
+		btnCampo1.setVisible(bool);
+		btnCampo2.setVisible(bool);
+		btnCampo3.setVisible(bool);
 	}
 	private void settearVisibilidadVE(Boolean bool){
-		lblInicio.setVisible(bool);
-		lblFinal.setVisible(bool);
-		tfInicio.setVisible(bool);
-		tfFinal.setVisible(bool);
-		lblVideo.setVisible(bool);
-		tfVideo.setVisible(bool);
-		btnVideo.setVisible(bool);
+		lblCampo1.setText("Desde:");
+		lblCampo1.setVisible(bool);
+		lblCampo2.setText("Hasta:");
+		lblCampo2.setVisible(bool);
+		tfCampo1.setVisible(bool);
+		tfCampo2.setVisible(bool);
+		lblCampo3.setVisible(bool);
+		tfCampo3.setVisible(bool);
+		btnCampo3.setVisible(bool);
+	}
+	
+	private void settearVisibilidadJW(Boolean bool){
+		lblCampo1.setText("Video 1:");
+		lblCampo1.setVisible(bool);
+		lblCampo2.setText("Video 2:");
+		lblCampo2.setVisible(bool);
+		tfCampo1.setVisible(bool);
+		tfCampo2.setVisible(bool);
+		btnCampo1.setVisible(bool);
+		btnCampo2.setVisible(bool);
 	}
 
 	public JFrame getFrmBasheador() {
@@ -263,60 +255,60 @@ public class VistaSetup extends VistaAbstracta {
 		this.panelParametros = panelParametros;
 	}
 
-	public JTextField getTfAudio() {
-		return tfAudio;
+	public JTextField gettfCampo1() {
+		return tfCampo1;
 	}
 
-	public void setTfAudio(JTextField tfAudio) {
-		this.tfAudio = tfAudio;
+	public void settfCampo1(JTextField tfCampo1) {
+		this.tfCampo1 = tfCampo1;
 	}
 
-	public JTextField getTfImagen() {
-		return tfImagen;
+	public JTextField gettfCampo2() {
+		return tfCampo2;
 	}
 
-	public void setTfImagen(JTextField tfImagen) {
-		this.tfImagen = tfImagen;
+	public void settfCampo2(JTextField tfCampo2) {
+		this.tfCampo2 = tfCampo2;
 	}
 
-	public JTextField getTfVideo() {
-		return tfVideo;
+	public JTextField gettfCampo3() {
+		return tfCampo3;
 	}
 
-	public void setTfVideo(JTextField tfVideo) {
-		this.tfVideo = tfVideo;
+	public void settfCampo3(JTextField tfCampo3) {
+		this.tfCampo3 = tfCampo3;
 	}
 
 	public JTextField getTfDestiino() {
-		return tfDestiino;
+		return tfDestino;
 	}
 
-	public void setTfDestiino(JTextField tfDestiino) {
-		this.tfDestiino = tfDestiino;
+	public void setTfDestiino(JTextField tfDestino) {
+		this.tfDestino = tfDestino;
 	}
 
-	public JButton getBtnAudio() {
-		return btnAudio;
+	public JButton getbtnCampo1() {
+		return btnCampo1;
 	}
 
-	public void setBtnAudio(JButton btnAudio) {
-		this.btnAudio = btnAudio;
+	public void setbtnCampo1(JButton btnCampo1) {
+		this.btnCampo1 = btnCampo1;
 	}
 
-	public JButton getBtnImagen() {
-		return btnImagen;
+	public JButton getbtnCampo2() {
+		return btnCampo2;
 	}
 
-	public void setBtnImagen(JButton btnImagen) {
-		this.btnImagen = btnImagen;
+	public void setbtnCampo2(JButton btnCampo2) {
+		this.btnCampo2 = btnCampo2;
 	}
 
-	public JButton getBtnVideo() {
-		return btnVideo;
+	public JButton getbtnCampo3() {
+		return btnCampo3;
 	}
 
-	public void setBtnVideo(JButton btnVideo) {
-		this.btnVideo = btnVideo;
+	public void setbtnCampo3(JButton btnCampo3) {
+		this.btnCampo3 = btnCampo3;
 	}
 
 	public JButton getBtnDestino() {
@@ -327,28 +319,28 @@ public class VistaSetup extends VistaAbstracta {
 		this.btnDestino = btnDestino;
 	}
 
-	public JLabel getLblAudio() {
-		return lblAudio;
+	public JLabel getlblCampo1() {
+		return lblCampo1;
 	}
 
-	public void setLblAudio(JLabel lblAudio) {
-		this.lblAudio = lblAudio;
+	public void setlblCampo1(JLabel lblCampo1) {
+		this.lblCampo1 = lblCampo1;
 	}
 
-	public JLabel getLblImagen() {
-		return lblImagen;
+	public JLabel getlblCampo2() {
+		return lblCampo2;
 	}
 
-	public void setLblImagen(JLabel lblImagen) {
-		this.lblImagen = lblImagen;
+	public void setlblCampo2(JLabel lblCampo2) {
+		this.lblCampo2 = lblCampo2;
 	}
 
-	public JLabel getLblVideo() {
-		return lblVideo;
+	public JLabel getlblCampo3() {
+		return lblCampo3;
 	}
 
-	public void setLblVideo(JLabel lblVideo) {
-		this.lblVideo = lblVideo;
+	public void setlblCampo3(JLabel lblCampo3) {
+		this.lblCampo3 = lblCampo3;
 	}
 
 	public JLabel getLblDestino() {
