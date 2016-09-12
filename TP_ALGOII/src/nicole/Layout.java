@@ -5,8 +5,6 @@ import java.util.List;
 import java.util.ArrayList;
 import javax.swing.*;
 
-import pack.RotarVideo;
-
 public class Layout extends JPanel {
 
 	private JFrame f = new JFrame();
@@ -148,9 +146,9 @@ public class Layout extends JPanel {
         f.setVisible(true);
     }
     
-	public void mostrarParametros(List<Parametro> parametros){
+	public void mostrarParametros(List<Control> controls){
 		this.getParametros().clear();
-		for(Parametro p:parametros){
+		for(Control p: controls){
 			String[] param=new String[2];
 			param[0]=p.getClase();
 			param[1]=p.getLabel();

@@ -1,18 +1,34 @@
 package agustin;
 
 import nicole.Configuracion;
-import nicole.Parametro;
+import nicole.Control;
 
 import javax.swing.*;
 import java.util.List;
+import java.util.stream.Collectors;
 
-/**
- * Created by user on 11/09/2016.
- */
 public class InterfazConstructor {
-    private List<ConstructorControlador> constructorControladors;
+    private List<ControladorConstructor> controladorConstructors;
 
     public void crearControladoresDe(Configuracion configuracion, JPanel panel) {
-        List<Parametro> parametros = configuracion.getParametros();
+        List<Control> controls = configuracion.getControls();
+        for (Control control : controls) {
+            ControladorConstructor controladorConstructor = this.encontrarControladorConstructorCorrespondienteA(control.getClase());
+            controladorConstructor.contruiYAgregaA(control,panel);
+        }
     }
+
+    private ControladorConstructor encontrarControladorConstructorCorrespondienteA(String clase) {
+        return this.getControladorConstructors().stream().filter(unControlador -> unControlador.getClass().toString().equals(clase))
+                .collect(Collectors.toList())
+                .get(0);
+    }
+
+    public List<ControladorConstructor> getControladorConstructors() {
+        return controladorConstructors;
+    }
+    public void setControladorConstructors(List<ControladorConstructor> controladorConstructors) {
+        this.controladorConstructors = controladorConstructors;
+    }
+
 }

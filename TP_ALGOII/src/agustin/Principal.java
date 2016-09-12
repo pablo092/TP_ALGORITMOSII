@@ -104,7 +104,7 @@ public class Principal {
                 .filter(unaConfig -> unaConfig.getNombre().equals(configSeleccionada))
                 .collect(Collectors.toList())
                 .get(0);
-        this.getInterfazConstructor().crearControladoresDe(configuracion,panel);
+        this.getInterfazConstructor().crearControladoresDe(configuracion,this.getPanel());
     }
 
     private void setearTituloDelFrameSegun(String nameApp) {

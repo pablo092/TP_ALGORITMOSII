@@ -37,7 +37,7 @@ import org.xml.sax.SAXException;
 						}
 						config=new Configuracion();
 						i++;
-						config.setNombre("Configuracion "+i);
+						config.setNombre(r.getAttribute("name"));
 						for(int i=0;i<r.getAttributes().getLength();i++){
 							if(r.getAttributes().item(i).getNodeName().contains("command")){
 								app.setCommand(r.getAttributes().item(i).getNodeValue());
@@ -48,23 +48,25 @@ import org.xml.sax.SAXException;
 						}
 					}
 					if(r.getNodeName().equals("control")){
-						Parametro param=new Parametro();
+						Control control =new Control();
 						for(int i=0;i<r.getAttributes().getLength();i++){
-							if(r.getAttributes().item(i).getNodeName().contains("params")){
-								app.setParametrosComando(r.getAttributes().item(i).getNodeValue());
-							}
 							if(r.getAttributes().item(i).getNodeName().contains("label")){
-								param.setLabel(r.getAttributes().item(i).getNodeValue());
+								control.setLabel(r.getAttributes().item(i).getNodeValue());
 							}
 							if(r.getAttributes().item(i).getNodeName().contains("name")){
-								param.setName(r.getAttributes().item(i).getNodeValue());
+								control.setName(r.getAttributes().item(i).getNodeValue());
 							}
 							if(r.getAttributes().item(i).getNodeName().contains("class")){
-								param.setClase(r.getAttributes().item(i).getNodeValue());
+								control.setClase(r.getAttributes().item(i).getNodeValue());
 							}
+
+							//AGREGAR ACA EL PARSEO DE LOS HIJOS DEL CONTROL
 						}
-						config.getParametros().add(param);
+						config.getControls().add(control);
 					}
+
+					//AGREGAR ACA LOGICA DEL PARSEO DE LOS HIJOS DE UN CONTROL
+
 					NodeList hijos=r.getChildNodes();
 					List<Node> pendientes=new ArrayList();
 					agregar(r.getChildNodes(),pendientes);

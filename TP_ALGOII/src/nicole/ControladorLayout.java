@@ -1,6 +1,5 @@
 package nicole;
 
-import java.awt.EventQueue;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.BufferedReader;
@@ -10,30 +9,28 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import pack.RotarVideo;
-
 public class ControladorLayout implements ActionListener{
 	Layout l=new Layout();
 	List<Aplicacion> aplicaciones=new ArrayList<Aplicacion>();
-	
+
 	Aplicacion app=new Aplicacion();
 	Configuracion config=new Configuracion();
 	Boolean f=false;
-	
+
 	public ControladorLayout(Layout l){
 		this.cargarAplicaciones();
 		this.l=l;
 		this.loadAPIs();
-		
+
 		l.getComboAPIs().addActionListener(this);
 		l.getComboConfigs().addActionListener(this);
 //		l.getBtnDestino().addActionListener(this);
 //		l.getBtnComenzar().addActionListener(this);
-		
+
 	}
-	
+
 	public void actionPerformed(ActionEvent event) {
-		if(!f){	
+		if(!f){
 		for(Aplicacion a: aplicaciones){
 			if(l.getComboAPIs().getSelectedItem().equals(a.getName()) && l.getComboConfigs().getSelectedItem()==null){
 				app=a;
@@ -46,7 +43,7 @@ public class ControladorLayout implements ActionListener{
 			for(Configuracion c: app.getConfiguraciones()){
 				if(l.getComboConfigs().getSelectedItem().equals(c.getNombre())){
 					config=c;
-					l.mostrarParametros(c.getParametros());
+					l.mostrarParametros(c.getControls());
 				}
 			}
 		}

@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Configuracion {
 	private String nombre;
-	private List<Parametro> parametros=new ArrayList();
+	private List<Control> controls =new ArrayList();
 	
 	public String getNombre() {
 		return nombre;
@@ -15,11 +15,11 @@ public class Configuracion {
 		this.nombre = nombre;
 	}
 	
-	public List<Parametro> getParametros() {
-		return parametros;
+	public List<Control> getControls() {
+		return controls;
 	}
 
-	public void setParametros(List<Parametro> parametros) {
-		this.parametros = parametros;
+	public void setControls(List<Control> controls) {
+		this.controls = controls;
 	}
 }
