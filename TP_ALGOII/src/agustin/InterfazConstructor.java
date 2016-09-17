@@ -19,7 +19,7 @@ public class InterfazConstructor {
     }
 
     private ControladorConstructor encontrarControladorConstructorCorrespondienteA(String clase) {
-        return this.getControladorConstructors().stream().filter(unControlador -> unControlador.getClass().toString().equals(clase))
+        return (ControladorConstructor) this.getControladorConstructors().stream().filter(unControlador -> unControlador.getClass().toString().equals(clase))
                 .collect(Collectors.toList())
                 .get(0);
     }
