@@ -1,5 +1,6 @@
 package nicole;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ParametroDeControl {
@@ -8,7 +9,7 @@ public class ParametroDeControl {
 	public String defDir;
 	public int defvalue;
 	public int grado;
-	public  List<String> tipoArch;
+	public  List<String> tipoArch=new ArrayList<String>();
 	
 
 	

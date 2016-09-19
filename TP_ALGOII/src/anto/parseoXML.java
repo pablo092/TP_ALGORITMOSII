@@ -43,7 +43,7 @@ import nicole.ParametroDeControl;;
 				Document doc = builder.parse("app.xml");
 				
 				NodeList appList = doc.getElementsByTagName("app");
-				
+				 System.out.println("what");
 				
 				for(int i=0;i<appList.getLength();i++){
 					
@@ -88,7 +88,7 @@ import nicole.ParametroDeControl;;
 							SwitchPARSEO(nombre,parametro,control);
 							 
 							NodeList ListaHijos= nombre.getChildNodes();
-							
+							//HIJOS DE CONFIG --> CONTROL
 							 if(ListaHijos != null){
 							
 								 for(int t=0;t<ListaHijos.getLength();t++){ 
@@ -96,30 +96,52 @@ import nicole.ParametroDeControl;;
 									 Node h = ListaHijos.item(t);
 									 
 									 if(h.getNodeType()==Node.ELEMENT_NODE){
-										 
+																													
 									 Element Hijo = (Element) h;
 									
-									 System.out.println(Hijo.getTagName());;
+									 System.out.println( "hijo "+ Hijo.getTagName());;
 										
 									 SwitchPARSEO(Hijo,parametro,control);
 									 
-									
-								 }
-								}
+									 
+									 NodeList ListaSubHijos = h.getChildNodes();
+									 
+									 if(ListaSubHijos != null){
+										 for(int k=0;k<ListaSubHijos.getLength();k++){ 
+										
+										Node sh = ListaSubHijos.item(k);
+										 
+										 if(sh.getNodeType()==Node.ELEMENT_NODE){
+												
+											 Element SubHijo = (Element) sh;
+											
+											 System.out.println( "sub hijo "+ SubHijo.getTagName());;
+												
+											 SwitchPARSEO(SubHijo,parametro,control);
+									 }
+									 }
+										 
+									 }
+									 
+									 	 
+								
 						
-					}
+					
+					
+				
+					
 					
 				}
 				
-					
-				} 
+			 }
+				}  //end if hijos
 					//termino de modificar parametro
-					
+						} //end 
 					 control.parametrosDeControl.add(parametro);
-				} //end primer if
+				} 
 				
 						
-						
+						}	//end primer if
 				} //end for general
 				} catch(ParserConfigurationException e){
 						e.printStackTrace();
@@ -244,6 +266,9 @@ import nicole.ParametroDeControl;;
 					
 				}
 			}			
-	}
+	
 				
-
+				
+				}
+				
+				
