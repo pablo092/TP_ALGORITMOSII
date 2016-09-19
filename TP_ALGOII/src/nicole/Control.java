@@ -9,7 +9,7 @@ public class Control {
 	private String name;
 	private String clase;
 	private String label;
-	private List<ParametroDeControl> parametrosDeControl;
+	public List<ParametroDeControl> parametrosDeControl;
 	
 	public Control() {
 		this.name = "";
@@ -18,6 +18,8 @@ public class Control {
 		this.parametrosDeControl = new ArrayList<ParametroDeControl>();
 	}
 
+
+	
 	public List<ParametroDeControl> getParametrosDeControl() {
 		return parametrosDeControl;
 	}
@@ -42,4 +44,6 @@ public class Control {
 	public void setLabel(String label) {
 		this.label = label;
 	}
+
+
 }
