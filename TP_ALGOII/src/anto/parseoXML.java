@@ -33,7 +33,7 @@ import nicole.ParametroDeControl;;
 
 		
 
-			public Aplicacion parseoXMLs (String[] args){
+			public Aplicacion parseoXMLs (){
 				
 				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 				try{

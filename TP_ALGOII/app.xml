@@ -30,4 +30,18 @@
 
 		</config>
 	</app>
+<app title="Video Extract">
+		<config command="c:/comandos/ffmpeg.exe" name="WAV+JPG=MKV" params="-i [AUDIO] -max [DURMAX] -loop 1 -i [IMAGE] -vcodec libx264 -preset slow -crf 20 -threads 0 -acodec copy -shortest [VIDEO]">
+			<control name="VIDEO" class="FileChooser" label="Video">
+				<def-dir>/users/antonella/Mis videos</def-dir>
+				<tipo-arch>mp4,avi,mpeg</tipo-arch>		
+		    </control>	
+			<control name="Desde" class="Textfield" label="Desde">
+					<minutos>0*|60</minutos>
+					<segundos>0*|60</segundos>
+			</control>
+
+		</config>
+	</app>
+	
 </TP-ACyEDA>
