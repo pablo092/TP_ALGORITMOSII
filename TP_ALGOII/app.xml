@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<TP-ACyEDA>
+
+<app title="Video Rotate">
+	<config command="c:/users/antonella/Desktop/Alg Avanzados/ffmpeg.exe" params="--i [VIDEO] -vf rotate=[GRADO]*PI/180 [OUTVIDEO]">
+		<control name="VIDEO" class="FileChooser" label="Video">
+			<def-dir>/users/antonella/Mis videos</def-dir>
+			<tipo-arch>mp4,avi,mpeg</tipo-arch>		
+		</control>	
+		<control name= "GRADO" class="ComboBox" label="Grado">
+									<def-value>90</def-value>
+									<regex>0*|360</regex>
+		</control>	
+		<control name= "OUTVIDEO" class="FileChooser" label="Guardar en">
+					<def-dir>/users/antonella/Mis videos Convertidos</def-dir>
+					<tipo-arch>mp4,avi,mpeg</tipo-arch>
+		</control>	
+	</config>	 
+</app>
+<app title="Audio To Video">
+		<config command="c:/comandos/ffmpeg.exe" name="WAV+JPG=MKV" params="-i [AUDIO] -max [DURMAX] -loop 1 -i [IMAGE] -vcodec libx264 -preset slow -crf 20 -threads 0 -acodec copy -shortest [VIDEO]">
+			<control name="AUDIO" class="FileChooser" label="Archivo de audio">
+					<def-dir>/usr/pablo/mis canciones</def-dir>
+					<tipo-arch>mp3,wav,wma</tipo-arch>
+			</control>
+			<control name="DURMAX" class="Textfield" label="Duracion Maxima del Video">
+					<def-dir>100</def-dir>
+					<tipo-arch>9*|99</tipo-arch>
+			</control>
+
+		</config>
+	</app>
+</TP-ACyEDA>
