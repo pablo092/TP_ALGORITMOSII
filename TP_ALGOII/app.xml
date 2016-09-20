@@ -31,16 +31,16 @@
 		</config>
 	</app>
 <app title="Video Extract">
-		<config command="c:/comandos/ffmpeg.exe" name="WAV+JPG=MKV" params="-i [AUDIO] -max [DURMAX] -loop 1 -i [IMAGE] -vcodec libx264 -preset slow -crf 20 -threads 0 -acodec copy -shortest [VIDEO]">
+		<config command="c:/comandos/ffmpeg.exe" name="WAV+JPG=MKV" params="-i [VIDEO] -ss [DESDE] -to [HASTA] [OUTVIDEO]">
 			<control name="VIDEO" class="FileChooser" label="Video">
 				<def-dir>/users/antonella/Mis videos</def-dir>
 				<tipo-arch>mp4,avi,mpeg,</tipo-arch>		
 		    </control>	
-			<control name="Desde" class="Textfield" label="Desde">
+			<control name="DESDE" class="Textfield" label="Desde">
 					<minutos>([0-5][0-9])|60</minutos>
 					<segundos>([0-5][0-9])|60</segundos>
 			</control>
-			<control name= "Hasta" class= "Textfield" label "Hasta">			        
+			<control name= "HASTA" class= "Textfield" label "Hasta">			        
 					<minutos>([0-5][0-9])|60</minutos>
 					<segundos>([0-5][0-9])|60</segundos>
 			</control>
