@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Configuracion {
-	private String nombre;
+	public String nombre;
 	private List<Control> controls =new ArrayList();
 	
 	public String getNombre() {

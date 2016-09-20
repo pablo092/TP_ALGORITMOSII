@@ -2,6 +2,9 @@ package controlador;
 
 import java.awt.event.ActionEvent;
 import java.io.File;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 import javax.swing.JFileChooser;
 import javax.swing.JTextField;
@@ -9,11 +12,16 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import dialogo.DialogoModal;
 import vista.VistaSetup;
+import anto.parseoXML;
+import main.Main2;
+import nicole.Aplicacion;
+import nicole.Configuracion;
 
 public class ControladorSetup extends ControladorAbstracto {
 	
 	FileNameExtensionFilter filtro;
-	
+	//static public List<Aplicacion> Aplicaciones= new ArrayList<Aplicacion>();
+
 	public ControladorSetup() {
 		this.vista = new VistaSetup();
 		this.dialogo = new DialogoModal();
@@ -28,18 +36,35 @@ public class ControladorSetup extends ControladorAbstracto {
 	
 	public void iniciar() {
 		((VistaSetup) vista).getFrmBasheador().setVisible(true);
-		loadAPIs();
+		//loadAPIs();
+		
+		cargarApis(Main2.Aplicaciones);
+		
+		cargarConfis();
+		
+		cargarConfigSegunNombreApp("Video Rotate");
+		
 	}
 
 	@Override
 	public void actionPerformed(ActionEvent event) {
+		
 		if(event.getSource() == ((VistaSetup) vista).getComboAPIs()) {
 			((VistaSetup) vista).getFrmBasheador().setTitle((String) ((VistaSetup) vista).getComboAPIs().getSelectedItem());
-			loadConfigs();
+			//loadConfigs();
+			
+		   String nameAppSelection =(String) ((VistaSetup) vista).getComboAPIs().getSelectedItem();
+		System.out.println("El nombre es " + nameAppSelection);
+		   cargarConfigSegunNombreApp(nameAppSelection);
+		
 		}
 		/*Seleccion de alguna API*/
+		
+		
+		
 		if(((VistaSetup) vista).getComboAPIs().getSelectedItem().equals("Audio To Video")){
-			((VistaSetup) vista).mostrarParametros(2);
+		
+		((VistaSetup) vista).mostrarParametros(2);
 		}
 		if(((VistaSetup) vista).getComboAPIs().getSelectedItem().equals("Video Extract")){
 			((VistaSetup) vista).mostrarParametros(3);
@@ -74,6 +99,42 @@ public class ControladorSetup extends ControladorAbstracto {
 		}
 	}
 	
+	
+	public Aplicacion buscarAppPorNombre(String name){
+		Iterator< Aplicacion> itApp = Main2.Aplicaciones.iterator();
+		Aplicacion app=null;
+				while (itApp.hasNext()){
+							Aplicacion App = itApp.next();
+							System.out.println(App.getName());
+							if( (App.getName())==name)
+									 App=app;
+							
+        }
+		
+	return app;
+	}
+	
+	private void cargarConfigSegunNombreApp(String nameAppSelection) {
+		// TODO Auto-generated method stub
+		
+		Aplicacion App = buscarAppPorNombre(nameAppSelection);
+		if(App != null){
+			System.out.println(App.getName());
+			Iterator< Configuracion> itConf = App.getConfiguraciones().iterator();
+	        while (itConf.hasNext()){
+	            Configuracion Config = itConf.next();
+	            System.out.println(Config.getNombre());
+	            
+	            ((VistaSetup) vista).getComboConfigs().addItem(Config.getNombre());
+	          
+	        }
+			
+		}
+	}
+		
+		
+	
+
 	private void selectPath(JTextField jTextField, FileNameExtensionFilter filtro, boolean guarda) {
 		JFileChooser fc = new JFileChooser();
 		int seleccion = fc.showSaveDialog(this.vista.getContentPane());
@@ -94,11 +155,54 @@ public class ControladorSetup extends ControladorAbstracto {
 		}
 	}
 	
+	public void cargarConfis(){
+		
+		for(int i =0; i<Main2.Aplicaciones.size();i++){
+			
+			Aplicacion App = Main2.Aplicaciones.get(i);
+			Iterator< Configuracion> itConf = App.getConfiguraciones().iterator();
+	        while (itConf.hasNext()){
+	            Configuracion Config = itConf.next();
+	            
+	            System.out.println(Config.getNombre());
+	            ((VistaSetup) vista).getComboConfigs().addItem(Config.getNombre());
+		          
+	        			}
+	     }
+	}
+	
+	public void cargarApis(List<Aplicacion> Aplicaciones){
+		
+		for (int i =0; i< Aplicaciones.size();i++){
+			Aplicacion app =Aplicaciones.get(i);
+			
+				((VistaSetup) vista).getComboAPIs().addItem(app.getName());
+			}
+		
+		
+	}
+	
+	public void cargarConfigs(List<Aplicacion> Aplicaciones){
+		
+		for(int i=0; i< Aplicaciones.size();i++){
+			Iterator< Configuracion> itConf = Aplicaciones.get(i).getConfiguraciones().iterator();
+	        while (itConf.hasNext()){
+	            Configuracion Config = itConf.next();
+	            ((VistaSetup) vista).getComboConfigs().addItem(Config.getNombre());
+	          
+	        }
+			
+		}
+		
+		
+	}
 	private void loadAPIs() {
 		((VistaSetup) vista).getComboAPIs().addItem("API1");
 		((VistaSetup) vista).getComboAPIs().addItem("Audio To Video");
 		((VistaSetup) vista).getComboAPIs().addItem("Video Extract");
 		((VistaSetup) vista).getComboAPIs().addItem("Join Wavs");
+		
+		
 	}
 	
 	private void loadConfigs() {

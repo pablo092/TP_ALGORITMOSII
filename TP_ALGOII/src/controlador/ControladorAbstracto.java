@@ -13,7 +13,7 @@ import vista.VistaAbstracta;
 
 public abstract class ControladorAbstracto implements ActionListener {
 
-	protected VistaAbstracta vista;
+    public VistaAbstracta vista;
 	protected DialogoAbstracto dialogo;
 
 	public abstract void actionPerformed(ActionEvent event);

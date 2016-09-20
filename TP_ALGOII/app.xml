@@ -2,7 +2,7 @@
 <TP-ACyEDA>
 
 <app title="Video Rotate">
-	<config command="c:/users/antonella/Desktop/Alg Avanzados/ffmpeg.exe" params="--i [VIDEO] -vf rotate=[GRADO]*PI/180 [OUTVIDEO]">
+	<config name= "MP4" command="c:/users/antonella/Desktop/Alg Avanzados/ffmpeg.exe" params="--i [VIDEO] -vf rotate=[GRADO]*PI/180 [OUTVIDEO]">
 		<control name="VIDEO" class="FileChooser" label="Video">
 			<def-dir>/users/antonella/Mis videos</def-dir>
 			<tipo-arch>mp4,avi,mpeg,</tipo-arch>		
@@ -13,16 +13,71 @@
 		</control>	
 		<control name= "OUTVIDEO" class="FileChooser" label="Guardar en">
 					<def-dir>/users/antonella/Mis videos Convertidos</def-dir>
-					<tipo-arch>mp4,avi,mpeg,</tipo-arch>
+					<tipo-arch>mp4,</tipo-arch>
 		</control>	
-	</config>	 
+	</config>	
+		<config name= "AVI" command="c:/users/antonella/Desktop/Alg Avanzados/ffmpeg.exe" params="--i [VIDEO] -vf rotate=[GRADO]*PI/180 [OUTVIDEO]">
+		<control name="VIDEO" class="FileChooser" label="Video">
+			<def-dir>/users/antonella/Mis videos</def-dir>
+			<tipo-arch>avi,</tipo-arch>		
+		</control>	
+		<control name= "GRADO" class="ComboBox" label="Grado">
+				<def-value>90</def-value>
+				<regex>([0-9][0-9])|([0-2][0-9][0-9])|(3[0-5][0-9])|360</regex>
+		</control>	
+		<control name= "OUTVIDEO" class="FileChooser" label="Guardar en">
+					<def-dir>/users/antonella/Mis videos Convertidos</def-dir>
+					<tipo-arch>avi,</tipo-arch>
+		</control>	
+	</config>	
+	<config name= "MPEG" command="c:/users/antonella/Desktop/Alg Avanzados/ffmpeg.exe" params="--i [VIDEO] -vf rotate=[GRADO]*PI/180 [OUTVIDEO]">
+		<control name="VIDEO" class="FileChooser" label="Video">
+			<def-dir>/users/antonella/Mis videos</def-dir>
+			<tipo-arch>mpeg,</tipo-arch>		
+		</control>	
+		<control name= "GRADO" class="ComboBox" label="Grado">
+				<def-value>90</def-value>
+				<regex>([0-9][0-9])|([0-2][0-9][0-9])|(3[0-5][0-9])|360</regex>
+		</control>	
+		<control name= "OUTVIDEO" class="FileChooser" label="Guardar en">
+					<def-dir>/users/antonella/Mis videos Convertidos</def-dir>
+					<tipo-arch>mpeg,</tipo-arch>
+		</control>	
+	</config>	
 </app>
 <app title="Audio To Video">
+		<config command="c:/comandos/ffmpeg.exe" name="WAV+PNG=AVI" params="-i [AUDIO] -max [DURMAX] -loop 1 -i [IMAGE] -vcodec libx264 -preset slow -crf 20 -threads 0 -acodec copy -shortest [VIDEO]">
+			<control name="AUDIO" class="FileChooser" label="Archivo de audio">
+					<def-dir>/usr/pablo/mis canciones</def-dir>
+					<tipo-arch>mp3,wav,wma,</tipo-arch>
+			</control>
+			<control name="IMAGE" class="FileChooser" label="Archivo de IMAGE">
+					<def-dir>/usr/pablo/mis imagenes</def-dir>
+					<tipo-arch>png,</tipo-arch>
+			</control>
+			<control name="VIDEO" class="FileChooser" label="Video">
+			<def-dir>/users/antonella/Mis videos</def-dir>
+			<tipo-arch>avi,</tipo-arch>		
+		</control>	
+			<control name="DURMAX" class="Textfield" label="Duracion Maxima del Video">
+					<def-value>100</def-value>
+					<regex>[0-9][0-9]</regex>
+			</control>
+
+		</config>
 		<config command="c:/comandos/ffmpeg.exe" name="WAV+JPG=MKV" params="-i [AUDIO] -max [DURMAX] -loop 1 -i [IMAGE] -vcodec libx264 -preset slow -crf 20 -threads 0 -acodec copy -shortest [VIDEO]">
 			<control name="AUDIO" class="FileChooser" label="Archivo de audio">
 					<def-dir>/usr/pablo/mis canciones</def-dir>
 					<tipo-arch>mp3,wav,wma,</tipo-arch>
 			</control>
+			<control name="IMAGE" class="FileChooser" label="Archivo de IMAGE">
+					<def-dir>/usr/pablo/mis imagenes</def-dir>
+					<tipo-arch>jpg,</tipo-arch>
+			</control>
+			<control name="VIDEO" class="FileChooser" label="Video">
+				<def-dir>/users/antonella/Mis videos</def-dir>
+				<tipo-arch>mkv,</tipo-arch>		
+			</control>	
 			<control name="DURMAX" class="Textfield" label="Duracion Maxima del Video">
 					<def-value>100</def-value>
 					<regex>[0-9][0-9]</regex>
@@ -31,7 +86,7 @@
 		</config>
 	</app>
 <app title="Video Extract">
-		<config command="c:/comandos/ffmpeg.exe" name="WAV+JPG=MKV" params="-i [VIDEO] -ss [DESDE] -to [HASTA] [OUTVIDEO]">
+		<config command="c:/comandos/ffmpeg.exe" name="AVI a MP4" params="-i [VIDEO] -ss [DESDE] -to [HASTA] [OUTVIDEO]">
 			<control name="VIDEO" class="FileChooser" label="Video">
 				<def-dir>/users/antonella/Mis videos</def-dir>
 				<tipo-arch>mp4,avi,mpeg,</tipo-arch>		
@@ -68,10 +123,7 @@
 		    </control>	
 
 		</config>
-	</app>
-
-<app title="JOIN WAVS">
-		<config command="c:/comandos/ffmpeg.exe" name="WAV+WAV=WAV" params="ffmpeg -f concat -i [ListaAudios] -c copy [outAudio]">
+		<config command="c:/comandos/ffmpeg.exe" name="TEXT A WAV" params="ffmpeg -f concat -i [ListaAudios] -c copy [outAudio]">
 			<control name="ListaAudios" class="FileChooser" label="Lista Audios">
 				<def-dir>/users/antonella</def-dir>
 				<tipo-arch>txt,word,</tipo-arch>		
@@ -83,6 +135,7 @@
 
 		</config>
 	</app>
+
 
 	
 </TP-ACyEDA>

@@ -1,6 +1,7 @@
 package anto;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -28,14 +29,14 @@ import nicole.ParametroDeControl;;
 		public static final String TIPOARCH ="tipo-arch";
 		public static final String REGEX ="regex";
 		public static final String DEFVALUE ="def-value";
-		private static Configuracion config=null;
+		
 		//private static int i=0;
 		static Aplicacion app;
 		ParametroDeControl  parametro;
 
 		
 
-			public Aplicacion parseoXMLs (){
+			public Aplicacion parseoXMLs (List<Aplicacion> Aplicaciones){
 				
 				DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 				try{
@@ -52,13 +53,11 @@ import nicole.ParametroDeControl;;
 					//recorro por APP
 					    app =new Aplicacion();
 					   
-					    config=new Configuracion();
+					  //  config=new Configuracion();
 						
-					    Control control =new Control();
+					//    Control control =new Control();
 					    
-					    Boolean f=false;
-
-			
+					    		
 						Node p =	appList.item(i);
 			
 						if(p.getNodeType()==Node.ELEMENT_NODE){
@@ -73,7 +72,9 @@ import nicole.ParametroDeControl;;
 				   	
 					for(int j=0;j<child.getLength();j++){
 					
+                       Configuracion config=new Configuracion();
 						
+					    Control control =new Control();
 						// CONTROL //
 						Node n =	child.item(j);
 					
@@ -87,7 +88,7 @@ import nicole.ParametroDeControl;;
 							
 							
 							
-							SwitchPARSEO(nombre,parametro,control);
+							SwitchPARSEO(nombre,config,parametro,control);
 							 
 							NodeList ListaHijos= nombre.getChildNodes();
 							//HIJOS DE CONFIG --> CONTROL
@@ -103,7 +104,7 @@ import nicole.ParametroDeControl;;
 									
 									 System.out.println( "hijo "+ Hijo.getTagName());;
 										
-									 SwitchPARSEO(Hijo,parametro,control);
+									 SwitchPARSEO(Hijo,config,parametro,control);
 									 
 									 
 									 NodeList ListaSubHijos = h.getChildNodes();
@@ -119,7 +120,7 @@ import nicole.ParametroDeControl;;
 											
 											 System.out.println( "sub hijo "+ SubHijo.getTagName());;
 												
-											 SwitchPARSEO(SubHijo,parametro,control);
+											 SwitchPARSEO(SubHijo,config,parametro,control);
 									 }
 									 }
 										 
@@ -143,7 +144,9 @@ import nicole.ParametroDeControl;;
 				} 
 				
 						
-						}	//end primer if
+						}
+						Aplicaciones.add(app);
+						//end primer if
 				} //end for general
 				} catch(ParserConfigurationException e){
 						e.printStackTrace();
@@ -159,15 +162,13 @@ import nicole.ParametroDeControl;;
 				
 			}
 			
-			public static void SwitchPARSEO(Element Elemt,ParametroDeControl parametro,Control control){
+			public static void SwitchPARSEO(Element Elemt,Configuracion config ,ParametroDeControl parametro,Control control){
 				
 				switch (Elemt.getTagName()) {
 				
 				case CONFIG:
 					
-					if(config!=null){
-						app.getConfiguraciones().add(config);
-					}
+					
 					//config=new Configuracion();
 					
 					config.setNombre(Elemt.getAttribute("name"));
@@ -179,7 +180,9 @@ import nicole.ParametroDeControl;;
 							app.setParametrosComando(Elemt.getAttributes().item(i).getNodeValue());
 						}
 					}
-								
+					
+						app.getConfiguraciones().add(config);
+						
 					
 					
 					break;
