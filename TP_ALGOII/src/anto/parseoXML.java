@@ -20,7 +20,7 @@ import nicole.Configuracion;
 import nicole.Control;
 
 import nicole.ParametroDeControl;;
-
+ 
 	public class parseoXML {
 		
 		public static final String CONFIG ="config";

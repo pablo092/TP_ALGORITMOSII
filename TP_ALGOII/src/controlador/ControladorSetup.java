@@ -40,9 +40,6 @@ public class ControladorSetup extends ControladorAbstracto {
 		
 		cargarApis(Main2.Aplicaciones);
 		
-		cargarConfis();
-		
-		cargarConfigSegunNombreApp("Video Rotate");
 		
 	}
 
@@ -52,15 +49,18 @@ public class ControladorSetup extends ControladorAbstracto {
 		if(event.getSource() == ((VistaSetup) vista).getComboAPIs()) {
 			((VistaSetup) vista).getFrmBasheador().setTitle((String) ((VistaSetup) vista).getComboAPIs().getSelectedItem());
 			//loadConfigs();
-			
+            
+            ((VistaSetup) vista).getComboConfigs().removeAllItems();
+
 		   String nameAppSelection =(String) ((VistaSetup) vista).getComboAPIs().getSelectedItem();
-		System.out.println("El nombre es " + nameAppSelection);
+		   
+		   System.out.println("El nombre es " + nameAppSelection);
+		   
 		   cargarConfigSegunNombreApp(nameAppSelection);
 		
 		}
 		/*Seleccion de alguna API*/
-		
-		
+				
 		
 		if(((VistaSetup) vista).getComboAPIs().getSelectedItem().equals("Audio To Video")){
 		
@@ -101,17 +101,20 @@ public class ControladorSetup extends ControladorAbstracto {
 	
 	
 	public Aplicacion buscarAppPorNombre(String name){
-		Iterator< Aplicacion> itApp = Main2.Aplicaciones.iterator();
-		Aplicacion app=null;
-				while (itApp.hasNext()){
-							Aplicacion App = itApp.next();
-							System.out.println(App.getName());
-							if( (App.getName())==name)
-									 App=app;
-							
-        }
 		
-	return app;
+		Iterator< Aplicacion> itApp = Main2.Aplicaciones.iterator();
+		Aplicacion Ap = null;
+				while (itApp.hasNext()){
+					
+							Aplicacion App = itApp.next();
+							
+								if( (App.getName())==name)
+									 Ap=App;
+						
+						}
+				return Ap;
+		
+					
 	}
 	
 	private void cargarConfigSegunNombreApp(String nameAppSelection) {
@@ -119,10 +122,11 @@ public class ControladorSetup extends ControladorAbstracto {
 		
 		Aplicacion App = buscarAppPorNombre(nameAppSelection);
 		if(App != null){
-			System.out.println(App.getName());
+			System.out.println("La app que llega es: "+App.getName());
 			Iterator< Configuracion> itConf = App.getConfiguraciones().iterator();
 	        while (itConf.hasNext()){
 	            Configuracion Config = itConf.next();
+	            
 	            System.out.println(Config.getNombre());
 	            
 	            ((VistaSetup) vista).getComboConfigs().addItem(Config.getNombre());
@@ -154,7 +158,8 @@ public class ControladorSetup extends ControladorAbstracto {
 			}
 		}
 	}
-	
+
+	//Carga todas las configs de todas las app. 
 	public void cargarConfis(){
 		
 		for(int i =0; i<Main2.Aplicaciones.size();i++){
@@ -182,20 +187,8 @@ public class ControladorSetup extends ControladorAbstracto {
 		
 	}
 	
-	public void cargarConfigs(List<Aplicacion> Aplicaciones){
-		
-		for(int i=0; i< Aplicaciones.size();i++){
-			Iterator< Configuracion> itConf = Aplicaciones.get(i).getConfiguraciones().iterator();
-	        while (itConf.hasNext()){
-	            Configuracion Config = itConf.next();
-	            ((VistaSetup) vista).getComboConfigs().addItem(Config.getNombre());
-	          
-	        }
-			
-		}
-		
-		
-	}
+	
+
 	private void loadAPIs() {
 		((VistaSetup) vista).getComboAPIs().addItem("API1");
 		((VistaSetup) vista).getComboAPIs().addItem("Audio To Video");

@@ -43,6 +43,7 @@ public class Main2 {
 	
 	
 	public static void MostrarTodasLasConfig(){
+	
 		for(int i =0; i<Aplicaciones.size();i++){
 			
 		Aplicacion App = Aplicaciones.get(i);
