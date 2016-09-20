@@ -40,6 +40,14 @@
 					<minutos>([0-5][0-9])|60</minutos>
 					<segundos>([0-5][0-9])|60</segundos>
 			</control>
+			<control name= "Hasta" class= "Textfield" label "Hasta">			        
+					<minutos>([0-5][0-9])|60</minutos>
+					<segundos>([0-5][0-9])|60</segundos>
+			</control>
+			<control name="OUTVIDEO" class="FileChooser" label="Guardar en">
+				<def-dir>/users/antonella/Mis videos</def-dir>
+				<tipo-arch>mp4,avi,mpeg,</tipo-arch>		
+		    </control>	
 
 		</config>
 	</app>
