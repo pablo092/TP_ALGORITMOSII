@@ -9,7 +9,7 @@
 		</control>	
 		<control name= "GRADO" class="ComboBox" label="Grado">
 									<def-value>90</def-value>
-									<regex>0*|360</regex>
+									<regex>([0-9][0-9])|([0-2][0-9][0-9])|(3[0-5][0-9])|360</regex>
 		</control>	
 		<control name= "OUTVIDEO" class="FileChooser" label="Guardar en">
 					<def-dir>/users/antonella/Mis videos Convertidos</def-dir>
@@ -25,7 +25,7 @@
 			</control>
 			<control name="DURMAX" class="Textfield" label="Duracion Maxima del Video">
 					<def-dir>100</def-dir>
-					<tipo-arch>9*|99</tipo-arch>
+					<tipo-arch>[0-9][0-9]</tipo-arch>
 			</control>
 
 		</config>
@@ -37,8 +37,8 @@
 				<tipo-arch>mp4,avi,mpeg,</tipo-arch>		
 		    </control>	
 			<control name="Desde" class="Textfield" label="Desde">
-					<minutos>0*|60</minutos>
-					<segundos>0*|60</segundos>
+					<minutos>([0-5][0-9])|60</minutos>
+					<segundos>([0-5][0-9])|60</segundos>
 			</control>
 
 		</config>

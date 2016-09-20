@@ -1,6 +1,8 @@
 package anto;
 
 import java.io.IOException;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -250,7 +252,23 @@ import nicole.ParametroDeControl;;
 				
 				case REGEX:
 					
-					System.out.println(Elemt.getTextContent());
+					String regex =Elemt.getTextContent();
+					
+
+					Pattern p = Pattern.compile(regex);
+					
+					
+					
+					/*
+					  Matcher m = p.matcher(dato);
+					 
+
+					if (dato.matches(regex))
+						System.out.println("Es un númerO");
+						else
+						System.out.println("No es un número");
+						*/
+						
 					
 					break;
 				
