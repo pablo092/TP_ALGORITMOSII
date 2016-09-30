@@ -11,11 +11,11 @@ import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
 import dialogo.DialogoModal;
+import interfaz_mezclaDeTodos.Aplicacion;
+import interfaz_mezclaDeTodos.Configuracion;
+import interfaz_mezclaDeTodos.ParseoXML;
 import vista.VistaSetup;
-import anto.parseoXML;
 import main.Main2;
-import nicole.Aplicacion;
-import nicole.Configuracion;
 
 public class ControladorSetup extends ControladorAbstracto {
 	

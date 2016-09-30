@@ -3,7 +3,7 @@ package pack;
 import java.util.ArrayList;
 import java.util.List;
 
-import nicole.Aplicacion;
+import interfaz_mezclaDeTodos.Aplicacion;
 
 public class RotarVideo extends Aplicacion{
 

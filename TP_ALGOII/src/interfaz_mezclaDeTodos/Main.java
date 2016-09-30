@@ -1,4 +1,4 @@
-package nicole;
+package interfaz_mezclaDeTodos;
 
 import java.awt.EventQueue;
 import java.io.BufferedReader;

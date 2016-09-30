@@ -1,9 +1,11 @@
 package agustin;
 
-import nicole.Configuracion;
-import nicole.Control;
-
 import javax.swing.*;
+
+import interfaz_mezclaDeTodos.Configuracion;
+import interfaz_mezclaDeTodos.Control;
+import interfaz_mezclaDeTodos.ControladorConstructor;
+
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -14,7 +16,7 @@ public class InterfazConstructor {
         List<Control> controls = configuracion.getControls();
         for (Control control : controls) {
             ControladorConstructor controladorConstructor = this.encontrarControladorConstructorCorrespondienteA(control.getClase());
-            controladorConstructor.contruiYAgregaA(control,panel);
+            controladorConstructor.contruiYAgregaA(control,panel,null);
         }
     }
 

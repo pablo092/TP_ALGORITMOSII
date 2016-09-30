@@ -5,15 +5,14 @@ import controlador.ControladorAbstracto;
 
 
 import controlador.ControladorSetup;
+import interfaz_mezclaDeTodos.Aplicacion;
+import interfaz_mezclaDeTodos.Configuracion;
+import interfaz_mezclaDeTodos.ParseoXML;
 
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
-import anto.parseoXML;
-
-import nicole.Aplicacion;
-import nicole.Configuracion;
 import vista.VistaSetup;
 
 
@@ -24,7 +23,7 @@ public class Main2 {
 	public static void main(String[] args) {
 		
 		
-		parseoXML parseo = new parseoXML();
+		ParseoXML parseo = new ParseoXML();
 		
 		parseo.parseoXMLs(Aplicaciones);
 		

@@ -1,16 +1,17 @@
 package agustin;
 
-import nicole.Configuracion;
 import nicole.Xml_dom_parser;
 
 import javax.swing.*;
+
+import interfaz_mezclaDeTodos.Aplicacion;
+import interfaz_mezclaDeTodos.Configuracion;
+
 import java.awt.event.ActionEvent;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
-
-import nicole.Aplicacion;
 
 public class Principal {
 

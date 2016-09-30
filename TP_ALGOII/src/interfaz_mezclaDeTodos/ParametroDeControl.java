@@ -1,4 +1,4 @@
-package nicole;
+package interfaz_mezclaDeTodos;
 
 import java.util.ArrayList;
 import java.util.List;

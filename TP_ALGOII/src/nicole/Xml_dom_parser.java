@@ -14,6 +14,10 @@ import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 import org.xml.sax.SAXException;
 
+import interfaz_mezclaDeTodos.Aplicacion;
+import interfaz_mezclaDeTodos.Configuracion;
+import interfaz_mezclaDeTodos.Control;
+
 	public class Xml_dom_parser {
 			
 		private Configuracion config=null;

@@ -1,6 +1,7 @@
-package nicole;
+package interfaz_mezclaDeTodos;
 
 import javax.swing.*;
+
 import java.util.ArrayList;
 import java.util.List;
 
