@@ -13,7 +13,7 @@ public class Ffmpeg {
 		try {			
 			
 //			ESTA COMANDO IMPRIME LA VERSION DE FFMPEG
-			File fichero = new File("ffmpeg.exe");
+			File fichero = new File("src/ffmpeg/bin/ffmpeg.exe");
 			String comando = "-version";
 			
 			Process p = Runtime.getRuntime().exec(fichero.getPath() + " " + comando);
