@@ -9,7 +9,7 @@ public class Aplicacion {
 	private String name="";
 	private String command="";
 	private String parametrosComando="";
-	private List<Configuracion> configuraciones=new ArrayList();
+	private List<Configuracion> configuraciones=new ArrayList<Configuracion>();
 	
 
 	public String getName() {

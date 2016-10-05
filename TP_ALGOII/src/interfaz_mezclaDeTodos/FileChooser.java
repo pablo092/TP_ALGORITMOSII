@@ -3,18 +3,28 @@ package interfaz_mezclaDeTodos;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.File;
+import java.io.FileReader;
+import java.util.Iterator;
 import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 public class FileChooser implements ControladorConstructor{
 
 	@Override
 	public void contruiYAgregaA(Control control, JPanel panel,List<JTextField> fields) {
+		
+	
+		
 		JPanel inner = new JPanel();
         inner.setLayout(new FlowLayout(FlowLayout.CENTER));
         inner.setMaximumSize(new Dimension(570, 50));
@@ -30,11 +40,87 @@ public class FileChooser implements ControladorConstructor{
         inner.add(tf);
         fields.add(tf);
         JButton boton=new JButton(">>");
+       
         boton.setMaximumSize(new Dimension(50, 32));
-        boton.setPreferredSize(new Dimension(50, 32));
+        boton.setPreferredSize(new Dimension(50, 32));   
+        
         inner.add(boton);
         panel.add(inner);
-		
-	}
+      
+        
+        
+         boton.addActionListener(new ActionListener(){
+         
 
+		@Override
+		public void actionPerformed(ActionEvent arg0) {
+
+			JFileChooser fc=new JFileChooser();
+			
+			fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
+			
+			
+			int  CantParam= control.getParametrosDeControl().size();
+		
+			System.out.print(CantParam);;
+		
+			ParametroDeControl Parametro = control.getParametrosDeControl().get(0);
+			
+			String dir = Parametro.getDefDir();
+		
+			
+			//Seteamos el valor default	
+			
+			fc.setCurrentDirectory((new java.io.File(dir)));
+				
+			//Creamos el filtro
+			
+			
+			for(String TipoArch: ((ParametroDeControl) Parametro).getTipoArch()){
+					
+				
+				
+				
+				
+				
+					FileNameExtensionFilter filtro = new FileNameExtensionFilter(TipoArch, TipoArch);
+	
+					fc.addChoosableFileFilter(new FileNameExtensionFilter(TipoArch, TipoArch));
+			           
+					//fc.setFileFilter(filtro);
+					
+					};
+				
+				fc.setAcceptAllFileFilterUsed(false);
+					
+	
+			
+
+			//Abrimos la ventana, guardamos la opcion seleccionada por el usuario
+			int seleccion=fc.showOpenDialog(inner);
+
+			//Si el usuario, pincha en aceptar
+			if(seleccion==JFileChooser.APPROVE_OPTION){
+
+				//Seleccionamos el fichero
+				
+				//[VIDEO]
+				String fichero=fc.getSelectedFile().getPath();
+				
+			
+			
+			tf.setText(fichero);
+		
+			fc.resetChoosableFileFilters();
+			}
+			}
+				
+		
+		
+         });
+         
+	}
 }
+			
+		
+			

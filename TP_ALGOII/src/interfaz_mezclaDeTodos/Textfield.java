@@ -3,7 +3,11 @@ package interfaz_mezclaDeTodos;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Font;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.BoxLayout;
 import javax.swing.JLabel;
@@ -29,7 +33,39 @@ public class Textfield implements ControladorConstructor{
         inner.add(tf);
         fields.add(tf);
         panel.add(inner);
+        
+        int defvalue=control.getParametrosDeControl().get(0).getDefvalue();
+		tf.setText(Integer.toString(defvalue));
 		
+		 tf.addActionListener(new ActionListener(){
+	         
+
+				@Override
+				public void actionPerformed(ActionEvent event) {
+				
+					switch(control.getName()){
+					 
+					case "GRADO":
+					
+					
+					//Pattern p = Pattern.compile(control.getParametrosDeControl().get(0).ExpRegGrado);
+					//Matcher m = p.matcher(tf.getText());
+					  
+					 if (!(tf.getText().matches(control.getParametrosDeControl().get(0).ExpRegGrado))){
+						 
+						 tf.setText(Integer.toString(0));
+						 
+						 
+					 } 
+					
+					 
+
+					
+					break;
+					}
+		}
+	});
+		 
 	}
 
 }

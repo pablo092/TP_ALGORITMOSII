@@ -23,11 +23,13 @@ public class ParseoXML {
 	public static final String TIPOARCH = "tipo-arch";
 	public static final String REGEX = "regex";
 	public static final String DEFVALUE = "def-value";
-
+	public static final String MINUTOS = "minutos";
+	public static final String SEGUNDOS = "segundos";
+	
 	// private static int i=0;
 	static Aplicacion app;
 	ParametroDeControl parametro;
-
+	Control control;
 	public Aplicacion parseoXMLs(List<Aplicacion> Aplicaciones) {
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -58,16 +60,16 @@ public class ParseoXML {
 					String name = ap.getAttribute("title");
 
 					app.setName(name);
+					System.out.println("App : " + name);
+					NodeList configList= ap.getChildNodes();
 
-					NodeList child = ap.getChildNodes();
-
-					for (int j = 0; j < child.getLength(); j++) {
+					for (int j = 0; j < configList.getLength(); j++) {
 
 						Configuracion config = new Configuracion();
 
-						Control control = new Control();
+						// control = new Control();
 						// CONTROL //
-						Node n = child.item(j);
+						Node n = configList.item(j);
 
 						if (n.getNodeType() == Node.ELEMENT_NODE) {
 
@@ -79,29 +81,29 @@ public class ParseoXML {
 
 							SwitchPARSEO(nombre, config, parametro, control);
 
-							NodeList ListaHijos = nombre.getChildNodes();
+							NodeList ControlList = nombre.getChildNodes();
 							// HIJOS DE CONFIG --> CONTROL
-							if (ListaHijos != null) {
+							if (ControlList != null) {
 
-								for (int t = 0; t < ListaHijos.getLength(); t++) {
-
-									Node h = ListaHijos.item(t);
-
+								for (int t = 0; t < ControlList.getLength(); t++) {
+											//CONTROL
+									Node h = ControlList.item(t);
+									control = new Control();
 									if (h.getNodeType() == Node.ELEMENT_NODE) {
 
 										Element Hijo = (Element) h;
 
 										// System.out.println( "hijo "+
 										// Hijo.getTagName());;
-
+										
 										SwitchPARSEO(Hijo, config, parametro, control);
 
-										NodeList ListaSubHijos = h.getChildNodes();
+										NodeList ParamList = h.getChildNodes();
 
-										if (ListaSubHijos != null) {
-											for (int k = 0; k < ListaSubHijos.getLength(); k++) {
+										if (ParamList != null) {
+											for (int k = 0; k < ParamList.getLength(); k++) {
 
-												Node sh = ListaSubHijos.item(k);
+												Node sh = ParamList.item(k);
 
 												if (sh.getNodeType() == Node.ELEMENT_NODE) {
 
@@ -113,19 +115,34 @@ public class ParseoXML {
 
 													SwitchPARSEO(SubHijo, config, parametro, control);
 												}
-											}
-
+												
+												
+														}
+											control.getParametrosDeControl().add(parametro);
+												
 										}
-
-									}
-
+										  
+											
+									}											
+									
+									config.getControls().add(control);
 								}
+								
+								
+								
+								
+								
+								
 							} // end if hijos
+									
+						
+					
 								// termino de modificar parametro
 						} // end
-						control.parametrosDeControl.add(parametro);
-					}
-
+				
+					
+					}//(POR CONFIGGGG)
+					
 				}
 				Aplicaciones.add(app);
 				// end primer if
@@ -162,14 +179,15 @@ public class ParseoXML {
 					app.setParametrosComando(Elemt.getAttributes().item(i).getNodeValue());
 				}
 			}
-
+			System.out.println("La Config es " + config.getNombre());
 			app.getConfiguraciones().add(config);
 
 			break;
 
 		case CONTROL:
 			if (Elemt.getNodeName().equals("control")) {
-				control=new Control();
+				
+				//control = new Control();
 				for (int i = 0; i < Elemt.getAttributes().getLength(); i++) {
 					
 					if (Elemt.getAttributes().item(i).getNodeName().contains("label")) {
@@ -183,8 +201,9 @@ public class ParseoXML {
 					}
 
 				}
-
-				config.getControls().add(control);
+				System.out.println("Controles: " + control.getName()+ control.getLabel()+control.getClase());
+				
+				
 			}
 
 		case DEFDIR:
@@ -193,6 +212,8 @@ public class ParseoXML {
 				String defDIR = Elemt.getTextContent();
 
 				parametro.setDefDir(defDIR);
+				
+				System.out.println(defDIR);
 
 			}
 
@@ -210,10 +231,10 @@ public class ParseoXML {
 				for (int i = 0; i < arrayChar.length; i++) {
 
 					if (arrayChar[i] == ',') {
-
+						System.out.println(type);
 						parametro.tipoArch.add(type);
 						type = "";
-
+						
 					}
 
 					else
@@ -228,8 +249,10 @@ public class ParseoXML {
 		case REGEX:
 
 			String regex = Elemt.getTextContent();
-
-			Pattern p = Pattern.compile(regex);
+			
+			
+			parametro.ExpRegGrado=regex;
+			//Pattern p = Pattern.compile(regex);
 
 			/*
 			 * Matcher m = p.matcher(dato);
@@ -244,9 +267,26 @@ public class ParseoXML {
 		case DEFVALUE:
 
 			int value = Integer.parseInt(Elemt.getTextContent());
-
+			System.out.print(value);
 			parametro.setDefvalue(value);
 			break;
+			
+			
+		case MINUTOS:
+
+			String minutos = Elemt.getTextContent();
+			
+			
+			parametro.ExpRegMinutos=minutos;
+			
+			break;
+			
+		case SEGUNDOS:
+
+			String seg = Elemt.getTextContent();
+			
+			
+			parametro.ExpRegSegundos=seg;
 		default:
 			// System.out.println("No entiendo de que carajo hablas");
 

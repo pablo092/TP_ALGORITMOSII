@@ -18,6 +18,7 @@ public class ControladorLayout implements ActionListener {
 
 	public ControladorLayout(Layout l) {
 		this.cargarAplicaciones();
+		this.mostrarContenidoApps();
 		this.l = l;
 		this.loadAPIs();
 
@@ -81,6 +82,51 @@ public class ControladorLayout implements ActionListener {
 
 	public void setAplicaciones(List<Aplicacion> aplicaciones) {
 		this.aplicaciones = aplicaciones;
+	}
+	
+	public void mostrarContenidoApps (){
+		
+
+		System.out.println("++++++Aplicaciones /n");
+		for (Aplicacion a : aplicaciones){
+			System.out.println("**********Nombre de la appp"+ a.getName());
+			
+				for (Configuracion c : a.getConfiguraciones()){
+					System.out.println("++++Nombre de la Config"+ c.getNombre());
+					
+					
+						for (Control cont : c.getControls()){
+							
+							System.out.println("**********Nombre del Control"+ cont.getName());
+							
+							System.out.println("**********Atributos/n");
+							
+							
+							for (ParametroDeControl param : cont.getParametrosDeControl()){
+								
+								System.out.println("++++++Nombre del Atributo def dir"+ param.getDefDir());
+
+								System.out.println("++++++Nombre del Atributo def value"+ param.getDefvalue());
+
+
+								System.out.println("++++++Nombre del Atributo grado"+ param.grado);
+								
+								
+							}
+							
+							
+				
+							
+							
+						}
+								
+					
+					
+				}
+			
+		}
+		
+		
 	}
 
 }

@@ -19,7 +19,14 @@ public class ComboBox implements ControladorConstructor{
     	combo.setMaximumSize(new Dimension(350, 30));
     	combo.setPreferredSize(new Dimension(350, 30));
     	for(ParametroDeControl p:control.getParametrosDeControl()){
-    		combo.addItem(Integer.toString(p.getDefvalue()));
+    		
+    		for(int i = 0;i <=p.getDefvalue();i++){
+    			combo.addItem(Integer.toString(i));
+    			
+    		}
+    		
+    		combo.setSelectedItem(Integer.toString(p.getDefvalue()));
+    
     	}
     	
 		JPanel inner = new JPanel();

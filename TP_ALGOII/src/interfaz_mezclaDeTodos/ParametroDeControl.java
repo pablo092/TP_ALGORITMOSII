@@ -5,14 +5,14 @@ import java.util.List;
 
 public class ParametroDeControl {
     //Todavia no se definio nada
-	public String param;
-	public String defDir;
-	public int defvalue;
-	public int grado;
+	public String param=null;
+	public String defDir=null;
+	public int defvalue=0;
+	public int grado=0;
 	public  List<String> tipoArch=new ArrayList<String>();
-	
-
-	
+	public String ExpRegGrado = null;
+	public String ExpRegMinutos = null;
+	public String ExpRegSegundos= null;
 	public String getDefDir() {
 		return defDir;
 	}

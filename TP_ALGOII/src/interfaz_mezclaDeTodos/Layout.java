@@ -40,7 +40,8 @@ public class Layout extends JPanel {
         if(!(controles.isEmpty())){
         	for(Control control:controles){
         		try {
-					controlador=(ControladorConstructor) Class.forName(this.getClass().getPackage().getName()+"."+control.getClase()).newInstance();
+        			controlador=(ControladorConstructor) Class.forName(this.getClass().getPackage().getName()+"."+control.getClase()).newInstance();
+					
 					controlador.contruiYAgregaA(control, outer, fields);
 				} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 					// TODO Auto-generated catch block
