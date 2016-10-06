@@ -60,7 +60,7 @@ public class ParseoXML {
 					String name = ap.getAttribute("title");
 
 					app.setName(name);
-					System.out.println("App : " + name);
+					
 					NodeList configList= ap.getChildNodes();
 
 					for (int j = 0; j < configList.getLength(); j++) {
@@ -77,8 +77,22 @@ public class ParseoXML {
 
 							// System.out.println(nombre.getTagName());;
 
-							parametro = new ParametroDeControl();
+							//parametro = new ParametroDeControl();
 
+						/*	config.setNombre(nombre.getAttribute("name"));
+							for (int i1 = 0; i1 < nombre.getAttributes().getLength(); i1++) {
+								if (nombre.getAttributes().item(i1).getNodeName().contains("command")) {
+									app.setCommand(nombre.getAttributes().item(i1).getNodeValue());
+								}
+								if (nombre.getAttributes().item(i1).getNodeName().contains("params")) {
+									app.setParametrosComando(nombre.getAttributes().item(i1).getNodeValue());
+								}
+							}
+							
+							app.getConfiguraciones().add(config);
+							*/
+							
+							
 							SwitchPARSEO(nombre, config, parametro, control);
 
 							NodeList ControlList = nombre.getChildNodes();
@@ -88,23 +102,27 @@ public class ParseoXML {
 								for (int t = 0; t < ControlList.getLength(); t++) {
 											//CONTROL
 									Node h = ControlList.item(t);
-									control = new Control();
+									
 									if (h.getNodeType() == Node.ELEMENT_NODE) {
-
+											
+										control = new Control();
 										Element Hijo = (Element) h;
-
-										// System.out.println( "hijo "+
-										// Hijo.getTagName());;
 										
-										SwitchPARSEO(Hijo, config, parametro, control);
+								/*	control.setName(Hijo.getAttribute("name"));
+									control.setLabel(Hijo.getAttribute("label"));
+									control.setClase(Hijo.getAttribute("class"));
+									*/
+									//control = new Control();
+																		
+									SwitchPARSEO(Hijo, config, parametro, control);
 
 										NodeList ParamList = h.getChildNodes();
 
 										if (ParamList != null) {
-											for (int k = 0; k < ParamList.getLength(); k++) {
+											parametro = new ParametroDeControl();
+												for (int k = 0; k < ParamList.getLength(); k++) {
 
 												Node sh = ParamList.item(k);
-
 												if (sh.getNodeType() == Node.ELEMENT_NODE) {
 
 													Element SubHijo = (Element) sh;
@@ -118,14 +136,14 @@ public class ParseoXML {
 												
 												
 														}
-											control.getParametrosDeControl().add(parametro);
+											//kk
+										} control.getParametrosDeControl().add(parametro);
 												
-										}
-										  
+										if(control!= null)
+									config.getControls().add(control); 
 											
 									}											
 									
-									config.getControls().add(control);
 								}
 								
 								
@@ -179,7 +197,7 @@ public class ParseoXML {
 					app.setParametrosComando(Elemt.getAttributes().item(i).getNodeValue());
 				}
 			}
-			System.out.println("La Config es " + config.getNombre());
+			
 			app.getConfiguraciones().add(config);
 
 			break;
@@ -201,10 +219,9 @@ public class ParseoXML {
 					}
 
 				}
-				System.out.println("Controles: " + control.getName()+ control.getLabel()+control.getClase());
-				
-				
+			
 			}
+			break;
 
 		case DEFDIR:
 			if (Elemt.getNodeName().equals("def-dir")) {
@@ -213,7 +230,7 @@ public class ParseoXML {
 
 				parametro.setDefDir(defDIR);
 				
-				System.out.println(defDIR);
+				
 
 			}
 
@@ -231,7 +248,7 @@ public class ParseoXML {
 				for (int i = 0; i < arrayChar.length; i++) {
 
 					if (arrayChar[i] == ',') {
-						System.out.println(type);
+						
 						parametro.tipoArch.add(type);
 						type = "";
 						
@@ -267,7 +284,7 @@ public class ParseoXML {
 		case DEFVALUE:
 
 			int value = Integer.parseInt(Elemt.getTextContent());
-			System.out.print(value);
+			
 			parametro.setDefvalue(value);
 			break;
 			
@@ -287,9 +304,7 @@ public class ParseoXML {
 			
 			
 			parametro.ExpRegSegundos=seg;
-		default:
-			// System.out.println("No entiendo de que carajo hablas");
-
+		break;
 		}
 	}
 

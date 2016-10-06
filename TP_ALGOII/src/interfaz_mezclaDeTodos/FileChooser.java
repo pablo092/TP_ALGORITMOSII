@@ -60,9 +60,6 @@ public class FileChooser implements ControladorConstructor{
 			fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
 			
 			
-			int  CantParam= control.getParametrosDeControl().size();
-		
-			System.out.print(CantParam);;
 		
 			ParametroDeControl Parametro = control.getParametrosDeControl().get(0);
 			
@@ -78,13 +75,7 @@ public class FileChooser implements ControladorConstructor{
 			
 			for(String TipoArch: ((ParametroDeControl) Parametro).getTipoArch()){
 					
-				
-				
-				
-				
-				
-					FileNameExtensionFilter filtro = new FileNameExtensionFilter(TipoArch, TipoArch);
-	
+			
 					fc.addChoosableFileFilter(new FileNameExtensionFilter(TipoArch, TipoArch));
 			           
 					//fc.setFileFilter(filtro);

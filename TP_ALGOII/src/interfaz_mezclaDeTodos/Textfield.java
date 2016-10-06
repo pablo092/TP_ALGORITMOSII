@@ -45,7 +45,7 @@ public class Textfield implements ControladorConstructor{
 				
 					switch(control.getName()){
 					 
-					case "GRADO":
+					case "DURMAX":
 					
 					
 					//Pattern p = Pattern.compile(control.getParametrosDeControl().get(0).ExpRegGrado);
@@ -63,6 +63,7 @@ public class Textfield implements ControladorConstructor{
 					
 					break;
 					}
+					
 		}
 	});
 		 

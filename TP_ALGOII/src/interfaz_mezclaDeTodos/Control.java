@@ -13,7 +13,7 @@ public class Control {
 	public List<ParametroDeControl> parametrosDeControl;
 	
 	public Control() {
-		this.name = "";
+		this.name = "null";
 		this.clase = "";
 		this.label = "";
 		this.parametrosDeControl = new ArrayList<ParametroDeControl>();

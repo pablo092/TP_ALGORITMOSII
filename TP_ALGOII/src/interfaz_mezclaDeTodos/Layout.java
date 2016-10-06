@@ -9,6 +9,10 @@ import agustin.*;
 
 public class Layout extends JPanel {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	private JFrame f = new JFrame();
 	private JComboBox<String> comboAPIs;
 	private JComboBox<String> comboConfigs;

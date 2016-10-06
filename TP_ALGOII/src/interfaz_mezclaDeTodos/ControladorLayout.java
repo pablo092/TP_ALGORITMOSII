@@ -2,10 +2,6 @@ package interfaz_mezclaDeTodos;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,7 +14,7 @@ public class ControladorLayout implements ActionListener {
 
 	public ControladorLayout(Layout l) {
 		this.cargarAplicaciones();
-		this.mostrarContenidoApps();
+	   this.mostrarContenidoApps();
 		this.l = l;
 		this.loadAPIs();
 
@@ -87,19 +83,19 @@ public class ControladorLayout implements ActionListener {
 	public void mostrarContenidoApps (){
 		
 
-		System.out.println("++++++Aplicaciones /n");
+		System.out.println("++++++Aplicaciones ");
 		for (Aplicacion a : aplicaciones){
 			System.out.println("**********Nombre de la appp"+ a.getName());
 			
 				for (Configuracion c : a.getConfiguraciones()){
-					System.out.println("++++Nombre de la Config"+ c.getNombre());
+					System.out.println("++++Nombre de la Config:  "+ c.getNombre());
 					
 					
 						for (Control cont : c.getControls()){
 							
-							System.out.println("**********Nombre del Control"+ cont.getName());
+							System.out.println("**********Nombre del Control:  "+ cont.getName());
 							
-							System.out.println("**********Atributos/n");
+							System.out.println("**********Atributos");
 							
 							
 							for (ParametroDeControl param : cont.getParametrosDeControl()){

@@ -15,21 +15,21 @@ public class ComboBox implements ControladorConstructor{
 	@Override
 	public void contruiYAgregaA(Control control, JPanel panel,List<JTextField> fields) {
 		
-		JComboBox<String> combo=new JComboBox<String>();
+		
+		
+				
+		JComboBox<Integer> combo=new JComboBox<Integer>();
     	combo.setMaximumSize(new Dimension(350, 30));
     	combo.setPreferredSize(new Dimension(350, 30));
-    	for(ParametroDeControl p:control.getParametrosDeControl()){
+    	ParametroDeControl p= control.getParametrosDeControl().get(0);
     		
-    		for(int i = 0;i <=p.getDefvalue();i++){
-    			combo.addItem(Integer.toString(i));
-    			
-    		}
+    		
     		
     		combo.setSelectedItem(Integer.toString(p.getDefvalue()));
     
-    	}
     	
-		JPanel inner = new JPanel();
+    	
+    	JPanel inner = new JPanel();
 		inner.setMaximumSize(new Dimension(700, 50));
         inner.setPreferredSize(new Dimension(700, 50));
         JLabel lbl = new JLabel(control.getLabel()+":", JLabel.LEFT);
@@ -39,7 +39,10 @@ public class ComboBox implements ControladorConstructor{
         inner.add(lbl);
         inner.add(combo);
         panel.add(inner);
+        combo.setEditable(true);
 		
+	} //Fin else
+		
+	
 	}
 
-}
