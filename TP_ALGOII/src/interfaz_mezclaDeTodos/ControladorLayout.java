@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ControladorLayout implements ActionListener {
 	Layout l = new Layout();
-	List<Aplicacion> aplicaciones = new ArrayList<Aplicacion>();
+	public static List<Aplicacion> aplicaciones = new ArrayList<Aplicacion>();
 
 	Aplicacion app = new Aplicacion();
 	Boolean tieneConfigsCargadas = false;

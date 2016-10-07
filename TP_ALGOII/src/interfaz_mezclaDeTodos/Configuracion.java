@@ -7,6 +7,8 @@ public class Configuracion {
 	public String nombre;
 	private List<Control> controls =new ArrayList<Control>();
 	
+	
+
 	public String getNombre() {
 		return nombre;
 	}

@@ -9,7 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class Ffmpeg {
-	public static void main(String[] args) {
+	public Ffmpeg() {
 		try {			
 			
 //			ESTA COMANDO IMPRIME LA VERSION DE FFMPEG
