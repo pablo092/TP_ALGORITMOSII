@@ -19,23 +19,30 @@ public class Textfield implements ControladorConstructor{
 
 	@Override
 	public void contruiYAgregaA(Control control, JPanel panel,List<JTextField> fields,JComboBox<String> comboAPIs) {
+		
 		JPanel inner = new JPanel();
 		JPanel inner2 = new JPanel();
         inner.setLayout(new FlowLayout(FlowLayout.CENTER));
-        inner.setMaximumSize(new Dimension(570, 50));
-        inner.setPreferredSize(new Dimension(700, 50));
+        inner.setMaximumSize(new Dimension(360, 40));
+        inner.setPreferredSize(new Dimension(360, 40));
+        inner2.setLayout(new FlowLayout(FlowLayout.CENTER));
+        inner2.setMaximumSize(new Dimension(200, 40));
+        inner2.setPreferredSize(new Dimension(200, 40));
+        
         JLabel label = new JLabel(control.getLabel() +":");
         label.setFont(new Font("Tahoma", Font.PLAIN, 14));
         label.setMaximumSize(new Dimension(200, 30));
         label.setPreferredSize(new Dimension(200, 30));
         inner2.add(label);
         JTextField tf = new JTextField("");
-        tf.setMaximumSize(new Dimension(350, 30));
-        tf.setPreferredSize(new Dimension(350, 30));
+        tf.setMaximumSize(new Dimension(360, 30));
+        tf.setPreferredSize(new Dimension(360, 30));
         inner.add(tf);
         fields.add(tf);
-        panel.add(inner);
+       
         panel.add(inner2);
+        panel.add(inner);
+        
         int defvalue=control.getParametrosDeControl().get(0).getDefvalue();
 		tf.setText(Integer.toString(defvalue));
 		for (ParametrosInterfaz p : interfaz_mezclaDeTodos.ControladorLayout.ParametrosInterfaz){

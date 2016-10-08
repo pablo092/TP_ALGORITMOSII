@@ -10,6 +10,7 @@ public class ControladorLayout implements ActionListener {
 	public static List<Aplicacion> aplicaciones = new ArrayList<Aplicacion>();
 	public static List<ParametrosInterfaz> ParametrosInterfaz = new ArrayList<ParametrosInterfaz>();
 	Aplicacion app = new Aplicacion();
+	Configuracion conf = new Configuracion();
 	Boolean tieneConfigsCargadas = false;
 
 	public ControladorLayout(Layout l) {
@@ -46,7 +47,7 @@ public class ControladorLayout implements ActionListener {
 			if (l.getComboAPIs().getSelectedItem().equals(app.getName())) {
 				for (Configuracion c : app.getConfiguraciones()) {
 					if (l.getComboConfigs().getSelectedItem().equals(c.getNombre())) {
-						
+						conf=c;
 						l.mostrarControles(c.getControls());
 					}
 				}
@@ -61,6 +62,7 @@ public class ControladorLayout implements ActionListener {
 						l.getComboConfigs().removeActionListener(this);
 						l.loadConfigs(app.getConfiguraciones());
 						l.getComboConfigs().addActionListener(this);
+						conf=app.getConfiguraciones().get(0);
 						l.mostrarControles(app.getConfiguraciones().get(0).getControls());
 					
 							

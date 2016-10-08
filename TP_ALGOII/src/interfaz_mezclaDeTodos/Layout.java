@@ -44,9 +44,9 @@ public class Layout extends JPanel {
     public void agregarPaneles(){
     	this.add(createIntroduc());
     	JPanel outer=new JPanel();
-		outer.setLayout(new BoxLayout(outer, BoxLayout.Y_AXIS));
-		outer.setMaximumSize(new Dimension(700, 200));
-		outer.setPreferredSize(new Dimension(700, 200));
+		outer.setLayout(new FlowLayout(FlowLayout.CENTER));
+		outer.setMaximumSize(new Dimension(700, 300));
+		outer.setPreferredSize(new Dimension(700, 300));
 		ControladorConstructor controlador;
         if(!(controles.isEmpty())){
         	for(Control control:controles){
@@ -100,22 +100,7 @@ public class Layout extends JPanel {
         outer.setMaximumSize(new Dimension(700, 80));
 		outer.setPreferredSize(new Dimension(700, 80));
         outer.setAlignmentX(CENTER_ALIGNMENT);
-        outer.setLayout(new BoxLayout(outer, BoxLayout.Y_AXIS));
-        JPanel inner = new JPanel();
-        inner.setLayout(new FlowLayout());
-        JLabel lblDestino = new JLabel("Destino:", JLabel.RIGHT);
-        lblDestino.setFont(new Font("Tahoma", Font.PLAIN, 14));
-        lblDestino.setPreferredSize(new Dimension(80, 32));
-        inner.add(lblDestino);
-        JTextField tf = new JTextField("", 32);
-        tf.setMaximumSize(new Dimension(300, 30));
-        tf.setPreferredSize(new Dimension(300, 30));
-        inner.add(tf);
-        fields.add(tf);
-        JButton btnDestino= new JButton(">>");
-        btnDestino.setPreferredSize(new Dimension(50, 32));
-        inner.add(btnDestino);
-        outer.add(inner);
+        outer.setLayout(new FlowLayout(FlowLayout.CENTER));
         JButton btnComenzar= new JButton("Comenzar");
         
         btnComenzar.setPreferredSize(new Dimension(100, 32));
@@ -132,7 +117,7 @@ public class Layout extends JPanel {
 		inputs= new ArrayList<Parametro>();
 		
 		String app=	(String) comboAPIs.getSelectedItem();
-		
+		String conf =(String) comboConfigs.getSelectedItem();
 		String comando = null;
 		
 		List<PanelYControl> paneles = new ArrayList<PanelYControl>();
@@ -219,15 +204,18 @@ public class Layout extends JPanel {
 		   // String comandoOriginal 
 		    for (Aplicacion a : ControladorLayout.aplicaciones){
 		    	if(a.getName().equals(app)){
-		    		
-		    	 comando=	(String)a.getCommand();
-		    	parametro = a.getParametrosComando();
+		    		for (Configuracion c : a.getConfiguraciones()){
+		    			if(c.getNombre().equals(conf)){
+		    				comando=	(String)c.getCommand();
+		    		    	parametro = c.getParametrosComando();
+		    			}
+		    		}
 		    		
 		    	}
 		    
 		     
 		}
-		System.out.println("++++++++++ EL COMANDO ES " + comando);
+		System.out.println("++++++++++ EL COMANDO ES " + parametro);
 		   InvocarComando.ffmpeg(parametro, inputs);
 		
     

@@ -29,19 +29,26 @@ public class FileChooser implements ControladorConstructor{
 
 	@Override
 	public void contruiYAgregaA(Control control, JPanel panel,List<JTextField> fields,JComboBox<String> comboAPIs) {
-		
 	
-		
 		JPanel inner = new JPanel();
 		JPanel inner2 = new JPanel();
+		JPanel inner3 = new JPanel();
         inner.setLayout(new FlowLayout(FlowLayout.CENTER));
-        inner.setMaximumSize(new Dimension(570, 50));
-        inner.setPreferredSize(new Dimension(700, 50));
+        inner.setMaximumSize(new Dimension(300, 50));
+        inner.setPreferredSize(new Dimension(300, 50));
+        inner2.setLayout(new FlowLayout(FlowLayout.CENTER));
+        inner2.setMaximumSize(new Dimension(200, 50));
+        inner2.setPreferredSize(new Dimension(200, 50));
+        inner3.setLayout(new FlowLayout(FlowLayout.CENTER));
+        inner3.setMaximumSize(new Dimension(50, 50));
+        inner3.setPreferredSize(new Dimension(50, 50));
+        
         JLabel label = new JLabel(control.getLabel() +":");
         label.setFont(new Font("Tahoma", Font.PLAIN, 14));
         label.setMaximumSize(new Dimension(200, 30));
         label.setPreferredSize(new Dimension(200, 30));
         inner2.add(label);
+        
         JTextField tf = new JTextField("");
         tf.setMaximumSize(new Dimension(300, 30));
         tf.setPreferredSize(new Dimension(300, 30));
@@ -51,11 +58,11 @@ public class FileChooser implements ControladorConstructor{
        
         boton.setMaximumSize(new Dimension(50, 32));
         boton.setPreferredSize(new Dimension(50, 32));   
+        inner3.add(boton);
         
-        inner2.add(boton);
-        panel.add(inner);
         panel.add(inner2);
-
+        panel.add(inner);
+        panel.add(inner3);
       
         
         

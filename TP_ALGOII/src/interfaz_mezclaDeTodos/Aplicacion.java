@@ -7,8 +7,6 @@ import pack.TipoParametro;
 
 public class Aplicacion {
 	private String name="";
-	private String command="";
-	private String parametrosComando="";
 	private List<Configuracion> configuraciones=new ArrayList<Configuracion>();
 	
 
@@ -18,22 +16,6 @@ public class Aplicacion {
 
 	public void setName(String name) {
 		this.name = name;
-	}
-
-	public String getCommand() {
-		return command;
-	}
-
-	public void setCommand(String command) {
-		this.command = command;
-	}
-
-	public String getParametrosComando() {
-		return parametrosComando;
-	}
-
-	public void setParametrosComando(String parametrosComando) {
-		this.parametrosComando = parametrosComando;
 	}
 
 	public List<Configuracion> getConfiguraciones() {

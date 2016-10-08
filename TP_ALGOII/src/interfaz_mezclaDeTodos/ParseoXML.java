@@ -191,10 +191,10 @@ public class ParseoXML {
 			config.setNombre(Elemt.getAttribute("name"));
 			for (int i = 0; i < Elemt.getAttributes().getLength(); i++) {
 				if (Elemt.getAttributes().item(i).getNodeName().contains("command")) {
-					app.setCommand(Elemt.getAttributes().item(i).getNodeValue());
+					config.setCommand(Elemt.getAttributes().item(i).getNodeValue());
 				}
 				if (Elemt.getAttributes().item(i).getNodeName().contains("params")) {
-					app.setParametrosComando(Elemt.getAttributes().item(i).getNodeValue());
+					config.setParametrosComando(Elemt.getAttributes().item(i).getNodeValue());
 				}
 			}
 			
