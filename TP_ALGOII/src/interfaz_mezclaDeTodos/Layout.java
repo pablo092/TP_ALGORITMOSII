@@ -5,9 +5,10 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Iterator;
+
 import javax.swing.*;
 
-import agustin.*;
 import ffmpeg.Ffmpeg;
 import ffmpeg.InvocarComando;
 import interfaz_mezclaDeTodos.ControladorLayout;
@@ -20,12 +21,12 @@ public class Layout extends JPanel {
 	 */
 	private static final long serialVersionUID = 1L;
 	private JFrame f = new JFrame();
-	private JComboBox<String> comboAPIs;
-	private JComboBox<String> comboConfigs;
+	public  JComboBox<String> comboAPIs;
+	public JComboBox<String> comboConfigs;
 	
     private List<JTextField> fields = new ArrayList<JTextField>();
     private List<Control> controles=new ArrayList<Control>();
-
+   
     public Layout() {
     	this.setComboAPIs(new JComboBox<String>());
     	comboAPIs.setMaximumSize(new Dimension(200, 30));
@@ -52,7 +53,7 @@ public class Layout extends JPanel {
         		try {
         			controlador=(ControladorConstructor) Class.forName(this.getClass().getPackage().getName()+"."+control.getClase()).newInstance();
 					
-					controlador.contruiYAgregaA(control, outer, fields);
+					controlador.contruiYAgregaA(control, outer, fields,comboAPIs);
 				} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
@@ -120,68 +121,123 @@ public class Layout extends JPanel {
         btnComenzar.setPreferredSize(new Dimension(100, 32));
         
         btnComenzar.setAlignmentX(RIGHT_ALIGNMENT);
-
+         
+        outer.add(btnComenzar);
         
         btnComenzar.addActionListener(new ActionListener(){
-        
+        List<Parametro>	inputs;
 
 		@Override
 		public void actionPerformed(ActionEvent arg0) {
-		List<String>	inputs = new ArrayList<String>();
+		inputs= new ArrayList<Parametro>();
+		
 		String app=	(String) comboAPIs.getSelectedItem();
+		
 		String comando = null;
-		String config= (String) comboConfigs.getSelectedItem();
-	
-		 Component[] components = outer.getComponents();
-
-		    for (int i = 0; i < components.length; i++) {
-
-		        if(components[i].getClass().getName().toString().equals("javax.swing.JTextField")){
-		        		String inText    = ((JTextField) components[i]).getText();
+		
+		List<PanelYControl> paneles = new ArrayList<PanelYControl>();
+		
+		inputs.removeAll(getFields());
+		
+		
+		for (ParametrosInterfaz p : interfaz_mezclaDeTodos.ControladorLayout.ParametrosInterfaz){
+			
+			if (app.equals(p.getApp())){
+		  	paneles=	p.getPaneles();
+				
+			};
+			
+		}
+		
+		Iterator<PanelYControl> pcc =paneles.iterator();
+		
+		 while (pcc.hasNext()){
+			 
+			PanelYControl pc= pcc.next();
+			
+						 
+			Component[] components = pc.getPanel().getComponents();
+		    		
+				for(Component cop : components){	
+		    			
+		    	System.out.println(cop.getClass().getName());
+		    			
+		    			
+		        if((cop.getClass().getName()).equals("javax.swing.JTextField")){
+		        	
+		        	String inText    = ((JTextField) cop).getText();
+		        		System.out.println("del tf : "+ inText);
 		        		
-		        		inputs.add(inText);
-		        	};
-		        if(components[i].getClass().getName().toString().equals("javax.swing.JComboBox")){
 		        		
-						String inText    = (String)((JComboBox<String>) components[i]).getSelectedItem();
-		        		
-		        		inputs.add(inText);
+		        		Parametro parametro = new Parametro();     		       		
+		        		parametro.setParametro(inText);
+			        	parametro.setNombreParametro(pc.getControl());
+			        	
+		        		inputs.add(parametro);
 		        	}
-		        if(components[i].getClass().getName().toString().equals("javax.swing.JFileChooser")){
+		        if((cop.getClass().getName()).equals("javax.swing.JComboBox")){
+		        		
+						String inText    = (String)((JComboBox<String>) cop).getSelectedItem();
+						System.out.println("del cb : "+ inText);
+						Parametro parametro = new Parametro();     		       		
+		        		parametro.setParametro(inText);
+			        	parametro.setNombreParametro(pc.getControl());
+			        	
+		        		inputs.add(parametro);
+		        	}
+		        if((cop.getClass().getName()).equals("javax.swing.JFileChooser")){
 
-					String inText    = (String)((JFileChooser) components[i]).getSelectedFile().getPath();
-	        		
-	        		inputs.add(inText);
+		        	
+					String inText    = ((JFileChooser) cop).getSelectedFile().getPath();
+	        		System.out.println("del fc : "+ inText);
+	        		Parametro parametro = new Parametro();     		       		
+	        		parametro.setParametro(inText);
+		        	parametro.setNombreParametro(pc.getControl());
+		        	
+	        		inputs.add(parametro);
 	        	}
 		        
-		        if(components[i].getClass().getName().toString().equals("javax.swing.JSpinners")){
+		        if((cop.getClass().getName()).equals("javax.swing.JSpinner")){
 	        	
-					String inText    = (String)((JSpinner) components[i]).getValue();
-	        		
-	        		inputs.add(inText);
+					String inText    = (((JSpinner) cop).getValue()).toString();
+					System.out.println("del spinner : "+ inText);
+					Parametro parametro = new Parametro();     		       		
+	        		parametro.setParametro(inText);
+		        	parametro.setNombreParametro(pc.getControl());
+		        	
+	        		inputs.add(parametro);
 	        	}
-		       
+		     
 		    }
-		    InvocarComando fpg = new InvocarComando();
-		    
+		    			
+		    		
+		 }
+			
+		   InvocarComando fpg = new InvocarComando();
+		    String parametro=null;
 		    
 		   // String comandoOriginal 
 		    for (Aplicacion a : ControladorLayout.aplicaciones){
 		    	if(a.getName().equals(app)){
 		    		
 		    	 comando=	(String)a.getCommand();
-		    	String param = a.getParametrosComando();
+		    	parametro = a.getParametrosComando();
 		    		
 		    	}
-		    }
 		    
-		    InvocarComando.ffmpeg(comando, inputs);
+		     
 		}
-		});
+		System.out.println("++++++++++ EL COMANDO ES " + comando);
+		   InvocarComando.ffmpeg(parametro, inputs);
+		
+    
+		}
+		
+        });
         
         
       
-        outer.add(btnComenzar);
+       
         return outer;
     }
 

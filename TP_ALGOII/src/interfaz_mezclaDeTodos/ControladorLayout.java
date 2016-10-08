@@ -8,13 +8,13 @@ import java.util.List;
 public class ControladorLayout implements ActionListener {
 	Layout l = new Layout();
 	public static List<Aplicacion> aplicaciones = new ArrayList<Aplicacion>();
-
+	public static List<ParametrosInterfaz> ParametrosInterfaz = new ArrayList<ParametrosInterfaz>();
 	Aplicacion app = new Aplicacion();
 	Boolean tieneConfigsCargadas = false;
 
 	public ControladorLayout(Layout l) {
 		this.cargarAplicaciones();
-	   this.mostrarContenidoApps();
+	  this.mostrarContenidoApps();
 		this.l = l;
 		this.loadAPIs();
 
@@ -26,11 +26,16 @@ public class ControladorLayout implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent event) {
+		
+
+		
 		if (!tieneConfigsCargadas) {
 			for (Aplicacion a : aplicaciones) {
 				if (l.getComboAPIs().getSelectedItem().equals(a.getName())
 						&& l.getComboConfigs().getSelectedItem() == null) {
+					
 					app = a;
+					
 					l.getF().setTitle(app.getName());
 					l.loadConfigs(app.getConfiguraciones());
 					tieneConfigsCargadas = true;
@@ -41,6 +46,7 @@ public class ControladorLayout implements ActionListener {
 			if (l.getComboAPIs().getSelectedItem().equals(app.getName())) {
 				for (Configuracion c : app.getConfiguraciones()) {
 					if (l.getComboConfigs().getSelectedItem().equals(c.getNombre())) {
+						
 						l.mostrarControles(c.getControls());
 					}
 				}
@@ -48,22 +54,33 @@ public class ControladorLayout implements ActionListener {
 				for (Aplicacion a : aplicaciones) {
 					if (l.getComboAPIs().getSelectedItem().equals(a.getName())
 							&& l.getComboConfigs().getSelectedItem() != null) {
+						
+						
 						app = a;
 						l.getF().setTitle(app.getName());
 						l.getComboConfigs().removeActionListener(this);
 						l.loadConfigs(app.getConfiguraciones());
 						l.getComboConfigs().addActionListener(this);
 						l.mostrarControles(app.getConfiguraciones().get(0).getControls());
+					
+							
+						}
+					
 					}
 				}
 			}
 		}
-	}
-
+		
+		
+		
+	
 
 	public void loadAPIs() {
 		l.getComboAPIs().removeAllItems();
 		for (Aplicacion a : aplicaciones) {
+			ParametrosInterfaz ParametrosInter = new ParametrosInterfaz();
+			ParametrosInter.setApp(a.getName());
+			ParametrosInterfaz.add(ParametrosInter);
 			l.getComboAPIs().addItem(a.getName());
 		}
 	}

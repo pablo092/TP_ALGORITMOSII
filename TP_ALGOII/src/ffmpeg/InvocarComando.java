@@ -8,8 +8,11 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import interfaz_mezclaDeTodos.PanelYControl;
+import interfaz_mezclaDeTodos.Parametro;
+
 public class InvocarComando {
-	public static void ffmpeg(String comandoOriginal,List<String> inputs) {
+	public static void ffmpeg(String comandoOriginal,List<Parametro> inputs) {
 		try {
 			File fichero = new File("src/ffmpeg/bin/ffmpeg.exe");
 			
@@ -41,20 +44,34 @@ public class InvocarComando {
 
 	}
 	
-	public static String parsearComando(String comandoOriginal,List<String> inputs){
+	public static String parsearComando(String comandoOriginal,List<Parametro> inputs){
 		//mete los inputs de la interfaz dentro del comando del XML
 		int j=0;
 		String comando="";
 		String[] s=comandoOriginal.split(" ");
 		for(int i=0;i<s.length;i++){
 			if(s[i].startsWith("[")){
-				comando+=" "+inputs.get(j);
-				j++;
+				
+						
+			for (Parametro p : inputs){
+				
+			
+				if(s[i+1].startsWith((p.getNombreParametro().substring(0, 1)))){
+						
+					comando+=" "+p.getParametro();
+					j++;
+					
+					}
+				}
+				
+				
 			}
 			else{
 				comando+=" "+s[i];
 			}
 		}
+		
+		System.out.println(comando);
 		return comando;
 	}
 }

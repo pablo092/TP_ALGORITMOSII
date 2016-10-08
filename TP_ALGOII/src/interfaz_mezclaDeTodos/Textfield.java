@@ -10,6 +10,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.BoxLayout;
+import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
@@ -17,8 +18,9 @@ import javax.swing.JTextField;
 public class Textfield implements ControladorConstructor{
 
 	@Override
-	public void contruiYAgregaA(Control control, JPanel panel,List<JTextField> fields) {
+	public void contruiYAgregaA(Control control, JPanel panel,List<JTextField> fields,JComboBox<String> comboAPIs) {
 		JPanel inner = new JPanel();
+		JPanel inner2 = new JPanel();
         inner.setLayout(new FlowLayout(FlowLayout.CENTER));
         inner.setMaximumSize(new Dimension(570, 50));
         inner.setPreferredSize(new Dimension(700, 50));
@@ -26,16 +28,29 @@ public class Textfield implements ControladorConstructor{
         label.setFont(new Font("Tahoma", Font.PLAIN, 14));
         label.setMaximumSize(new Dimension(200, 30));
         label.setPreferredSize(new Dimension(200, 30));
-        inner.add(label);
+        inner2.add(label);
         JTextField tf = new JTextField("");
         tf.setMaximumSize(new Dimension(350, 30));
         tf.setPreferredSize(new Dimension(350, 30));
         inner.add(tf);
         fields.add(tf);
         panel.add(inner);
-        
+        panel.add(inner2);
         int defvalue=control.getParametrosDeControl().get(0).getDefvalue();
 		tf.setText(Integer.toString(defvalue));
+		for (ParametrosInterfaz p : interfaz_mezclaDeTodos.ControladorLayout.ParametrosInterfaz){
+			
+			if (comboAPIs.getSelectedItem().equals(p.getApp())){
+				
+				PanelYControl pc = new PanelYControl();
+				
+				pc.setControl(control.getName());
+				pc.setPanel(inner);	
+				
+				p.getPaneles().add(pc);	
+				
+			};
+			}
 		
 		 tf.addActionListener(new ActionListener(){
 	         
@@ -43,6 +58,21 @@ public class Textfield implements ControladorConstructor{
 				@Override
 				public void actionPerformed(ActionEvent event) {
 				
+					
+										
+					for (ParametrosInterfaz p : interfaz_mezclaDeTodos.ControladorLayout.ParametrosInterfaz){
+						
+					if (comboAPIs.getSelectedItem().equals(p.getApp())){
+						
+						PanelYControl pc = new PanelYControl();
+						
+						pc.setControl(control.getName());
+						pc.setPanel(inner);	
+						
+						p.getPaneles().add(pc);
+						
+					};
+					
 					switch(control.getName()){
 					 
 					case "DURMAX":
@@ -65,8 +95,12 @@ public class Textfield implements ControladorConstructor{
 					}
 					
 		}
-	});
+	}
+		
+	
+
+});
 		 
 	}
-
+	
 }

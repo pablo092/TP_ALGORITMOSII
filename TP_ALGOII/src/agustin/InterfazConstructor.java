@@ -16,7 +16,7 @@ public class InterfazConstructor {
         List<Control> controls = configuracion.getControls();
         for (Control control : controls) {
             ControladorConstructor controladorConstructor = this.encontrarControladorConstructorCorrespondienteA(control.getClase());
-            controladorConstructor.contruiYAgregaA(control,panel,null);
+           // controladorConstructor.contruiYAgregaA(control,panel,null);
         }
     }
 

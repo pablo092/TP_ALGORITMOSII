@@ -6,5 +6,5 @@ import javax.swing.*;
 
 public interface ControladorConstructor {
 
-	void contruiYAgregaA(Control control, JPanel panel, List<JTextField> fields);
+	void contruiYAgregaA(Control control, JPanel panel, List<JTextField> fields, JComboBox<String> comboAPIs);
 }

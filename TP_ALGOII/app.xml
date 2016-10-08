@@ -2,7 +2,7 @@
 <TP-ACyEDA>
 
 <app title="Video Rotate">
-	<config name= "MP4" command="c:/users/antonella/Desktop/Alg Avanzados/ffmpeg.exe" params="--i [VIDEO] -vf rotate=[GRADO]*PI/180 [OUTVIDEO]">
+	<config name= "MP4" command="/src/ffmpeg/bin/ffmpeg.exe" params="--i [VIDEO] -vf rotate=[GRADO]*PI/180 [OUTVIDEO]">
 		<control name="VIDEO" class="FileChooser" label="Video">
 			<def-dir>C:\Users\antonella\Documents\My Videos\</def-dir>
 			<tipo-arch>mp4,avi,mpeg,</tipo-arch>		

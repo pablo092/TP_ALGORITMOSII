@@ -12,20 +12,28 @@ import java.util.List;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import interfaz_mezclaDeTodos.Layout;
+
+
+import interfaz_mezclaDeTodos.ControladorLayout;;
+
+
 public class FileChooser implements ControladorConstructor{
 
 	@Override
-	public void contruiYAgregaA(Control control, JPanel panel,List<JTextField> fields) {
+	public void contruiYAgregaA(Control control, JPanel panel,List<JTextField> fields,JComboBox<String> comboAPIs) {
 		
 	
 		
 		JPanel inner = new JPanel();
+		JPanel inner2 = new JPanel();
         inner.setLayout(new FlowLayout(FlowLayout.CENTER));
         inner.setMaximumSize(new Dimension(570, 50));
         inner.setPreferredSize(new Dimension(700, 50));
@@ -33,7 +41,7 @@ public class FileChooser implements ControladorConstructor{
         label.setFont(new Font("Tahoma", Font.PLAIN, 14));
         label.setMaximumSize(new Dimension(200, 30));
         label.setPreferredSize(new Dimension(200, 30));
-        inner.add(label);
+        inner2.add(label);
         JTextField tf = new JTextField("");
         tf.setMaximumSize(new Dimension(300, 30));
         tf.setPreferredSize(new Dimension(300, 30));
@@ -44,8 +52,10 @@ public class FileChooser implements ControladorConstructor{
         boton.setMaximumSize(new Dimension(50, 32));
         boton.setPreferredSize(new Dimension(50, 32));   
         
-        inner.add(boton);
+        inner2.add(boton);
         panel.add(inner);
+        panel.add(inner2);
+
       
         
         
@@ -85,7 +95,7 @@ public class FileChooser implements ControladorConstructor{
 				fc.setAcceptAllFileFilterUsed(false);
 					
 	
-			
+
 
 			//Abrimos la ventana, guardamos la opcion seleccionada por el usuario
 			int seleccion=fc.showOpenDialog(inner);
@@ -98,9 +108,23 @@ public class FileChooser implements ControladorConstructor{
 				//[VIDEO]
 				String fichero=fc.getSelectedFile().getPath();
 				
+			for (ParametrosInterfaz p : interfaz_mezclaDeTodos.ControladorLayout.ParametrosInterfaz){
+				
+			if (comboAPIs.getSelectedItem().equals(p.getApp())){
+				
+				
+				PanelYControl pc = new PanelYControl();
+				
+				pc.setControl(control.getName());
+				pc.setPanel(inner);
+							
+				p.getPaneles().add(pc);
+			};
+			}
 			
 			
 			tf.setText(fichero);
+				
 		
 			fc.resetChoosableFileFilters();
 			}
@@ -111,6 +135,7 @@ public class FileChooser implements ControladorConstructor{
          });
          
 	}
+
 }
 			
 		
