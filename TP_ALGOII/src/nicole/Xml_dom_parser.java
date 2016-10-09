@@ -44,10 +44,10 @@ import interfaz_mezclaDeTodos.Control;
 						config.setNombre(r.getAttribute("name"));
 						for(int i=0;i<r.getAttributes().getLength();i++){
 							if(r.getAttributes().item(i).getNodeName().contains("command")){
-								app.setCommand(r.getAttributes().item(i).getNodeValue());
+								//app.setCommand(r.getAttributes().item(i).getNodeValue());
 							}
 							if(r.getAttributes().item(i).getNodeName().contains("params")){
-								app.setParametrosComando(r.getAttributes().item(i).getNodeValue());
+								//app.setParametrosComando(r.getAttributes().item(i).getNodeValue());
 							}
 						}
 					}

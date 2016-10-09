@@ -4,8 +4,7 @@ public class Parametro {
 				String NombreParametro;
 				
 				String Parametro;
-				
-				
+
 				public String getNombreParametro() {
 					return NombreParametro;
 				}

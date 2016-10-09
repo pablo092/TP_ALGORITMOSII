@@ -52,7 +52,7 @@ public class Layout extends JPanel {
         	for(Control control:controles){
         		try {
         			controlador=(ControladorConstructor) Class.forName(this.getClass().getPackage().getName()+"."+control.getClase()).newInstance();
-					
+
 					controlador.contruiYAgregaA(control, outer, fields,comboAPIs);
 				} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
 					// TODO Auto-generated catch block
@@ -62,9 +62,6 @@ public class Layout extends JPanel {
         }
         this.add(outer);
         this.add(createFinal());
-        
-
-
     }
     
     private JPanel createIntroduc() {
@@ -137,23 +134,19 @@ public class Layout extends JPanel {
 		Iterator<PanelYControl> pcc =paneles.iterator();
 		
 		 while (pcc.hasNext()){
-			 
-			PanelYControl pc= pcc.next();
-			
-						 
+
+		 	PanelYControl pc= pcc.next();
 			Component[] components = pc.getPanel().getComponents();
 		    		
-				for(Component cop : components){	
-		    			
+				for(Component cop : components){
+
 		    	System.out.println(cop.getClass().getName());
-		    			
-		    			
+
 		        if((cop.getClass().getName()).equals("javax.swing.JTextField")){
 		        	
 		        	String inText    = ((JTextField) cop).getText();
 		        		System.out.println("del tf : "+ inText);
-		        		
-		        		
+
 		        		Parametro parametro = new Parametro();     		       		
 		        		parametro.setParametro(inText);
 			        	parametro.setNombreParametro(pc.getControl());
@@ -171,7 +164,6 @@ public class Layout extends JPanel {
 		        		inputs.add(parametro);
 		        	}
 		        if((cop.getClass().getName()).equals("javax.swing.JFileChooser")){
-
 		        	
 					String inText    = ((JFileChooser) cop).getSelectedFile().getPath();
 	        		System.out.println("del fc : "+ inText);
@@ -216,8 +208,9 @@ public class Layout extends JPanel {
 		     
 		}
 		System.out.println("++++++++++ EL COMANDO ES " + parametro);
-		   InvocarComando.ffmpeg(parametro, inputs);
-		
+			//CAMBIO ESTE METODO POR EL DE ABAJO, PARA PODER usar otro comando que no sea el ffmpeg
+			//InvocarComando.ffmpeg(parametro, inputs);
+		InvocarComando.invocarComando(comando,parametro,inputs);
     
 		}
 		
@@ -245,7 +238,7 @@ public class Layout extends JPanel {
         f.pack();
         f.setVisible(true);
     }
-    
+
 	public void mostrarControles(List<Control> controls){
 		controles.clear();
 		controles.addAll(controls);

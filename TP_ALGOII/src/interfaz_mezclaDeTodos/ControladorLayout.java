@@ -27,9 +27,6 @@ public class ControladorLayout implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent event) {
-		
-
-		
 		if (!tieneConfigsCargadas) {
 			for (Aplicacion a : aplicaciones) {
 				if (l.getComboAPIs().getSelectedItem().equals(a.getName())
@@ -64,18 +61,12 @@ public class ControladorLayout implements ActionListener {
 						l.getComboConfigs().addActionListener(this);
 						conf=app.getConfiguraciones().get(0);
 						l.mostrarControles(app.getConfiguraciones().get(0).getControls());
-					
-							
 						}
 					
 					}
 				}
 			}
 		}
-		
-		
-		
-	
 
 	public void loadAPIs() {
 		l.getComboAPIs().removeAllItems();

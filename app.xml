@@ -135,6 +135,15 @@
 
 		</config>
 	</app>
+	<app title="Exiftool">
+		<config command="C:\Users\user\Documents\agustin\Image-ExifTool-10.29\exiftool.exe" name="Basico" params="exiftool -common [IMAGEN]">
+			<control name="IMAGEN" class="FileChooser" label="Imagen">
+				<def-dir>C:\Users\user\Desktop\RUGBY 2016</def-dir>
+				<tipo-arch>jpg,png,</tipo-arch>
+			</control>
+		</config>
+		<config command="C:\Users\user\Documents\agustin\Image-ExifTool-10.29\exiftool.exe" name="n00b" params="exiftool"></config>
+	</app>
 
 
 	

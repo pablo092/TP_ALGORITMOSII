@@ -18,21 +18,14 @@ public abstract class ComboBox implements ControladorConstructor{
 
 	@Override
 	public void contruiYAgregaA(Control control, JPanel panel,List<JTextField> fields,JComboBox<String> comboAPIs) {
-		
-		
-		
-				
+
 		JComboBox<Integer> combo=new JComboBox<Integer>();
     	combo.setMaximumSize(new Dimension(350, 30));
     	combo.setPreferredSize(new Dimension(350, 30));
     	ParametroDeControl p= control.getParametrosDeControl().get(0);
-    		
-    		
-    		
-    		combo.setSelectedItem(Integer.toString(p.getDefvalue()));
-    
-    	
-    	
+
+		combo.setSelectedItem(Integer.toString(p.getDefvalue()));
+
     	JPanel inner = new JPanel();
 
     	JPanel inner2 = new JPanel();
@@ -60,10 +53,7 @@ public abstract class ComboBox implements ControladorConstructor{
 				p1.getPaneles().add(pc);
 				
 			};
-			}
-		
+		}
 	} //Fin else
-		
-	
-	}
+}
 

@@ -1,9 +1,8 @@
 package ffmpeg;
 
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.security.Principal;
+import java.util.Arrays;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -12,6 +11,51 @@ import interfaz_mezclaDeTodos.PanelYControl;
 import interfaz_mezclaDeTodos.Parametro;
 
 public class InvocarComando {
+
+	public static void invocarComando(String directorioDelComando, String lineaAEjecutar, List<Parametro> inputs) {
+		try {
+			String lineaComando = parsearComando(lineaAEjecutar, inputs);
+			Process process = new ProcessBuilder(directorioDelComando, lineaComando).start();
+			InputStream is = process.getInputStream();
+			InputStreamReader isr = new InputStreamReader(is);
+			BufferedReader br = new BufferedReader(isr);
+			String line;
+
+			while ((line = br.readLine()) != null) {
+				System.out.println(line);
+			}
+
+		} catch (IOException ex) {
+			ex.printStackTrace();
+		}
+
+	}
+
+	public static String parsearComando(String comandoOriginal, List<Parametro> inputs) {
+		// mete los inputs de la interfaz dentro del comando del XML
+		String comando = "";
+		String[] s = comandoOriginal.split(" ");
+		for (int i = 0; i < s.length; i++) {
+			if (s[i].startsWith("[")) {
+
+				for (Parametro p:inputs) {
+
+					if (s[i].contains(p.getNombreParametro())) {
+
+						comando += " "+'"'+p.getParametro()+'"';
+					}
+				}
+
+			} else {
+				comando += " " + s[i];
+			}
+		}
+
+		System.out.println(comando);
+		return comando;
+	}
+/*   ESTE METODO DEBERIA BORRARSE, Y USAR EL DE ABAJO
+
 	public static void ffmpeg(String comandoOriginal, List<Parametro> inputs) {
 		try {
 			File fichero = new File("src/ffmpeg/bin/ffmpeg.exe");
@@ -43,28 +87,6 @@ public class InvocarComando {
 		}
 
 	}
+*/
 
-	public static String parsearComando(String comandoOriginal, List<Parametro> inputs) {
-		// mete los inputs de la interfaz dentro del comando del XML
-		String comando = "";
-		String[] s = comandoOriginal.split(" ");
-		for (int i = 0; i < s.length; i++) {
-			if (s[i].startsWith("[")) {
-
-				for (Parametro p:inputs) {
-
-					if (s[i].contains(p.getNombreParametro())) {
-
-						comando += " "+'"'+p.getParametro()+'"';
-					}
-				}
-
-			} else {
-				comando += " " + s[i];
-			}
-		}
-
-		System.out.println(comando);
-		return comando;
-	}
 }
