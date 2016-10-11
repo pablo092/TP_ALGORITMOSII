@@ -45,7 +45,7 @@ public class InvocarComando {
 
 				for (Parametro p:inputs) {
 
-					if (s[i].contains(p.getNombreParametro())) {
+					if (s[i].equals(p.getNombreParametro())) {
 
 						comando += " "+'"'+p.getParametro()+'"';
 					}
