@@ -9,10 +9,6 @@ import java.util.Iterator;
 
 import javax.swing.*;
 
-import ffmpeg.Ffmpeg;
-import ffmpeg.InvocarComando;
-import interfaz_mezclaDeTodos.ControladorLayout;
-
 
 public class Layout extends JPanel {
 
@@ -189,11 +185,7 @@ public class Layout extends JPanel {
 		    			
 		    		
 		 }
-			
-		   InvocarComando fpg = new InvocarComando();
-		    String parametro=null;
-		    
-		   // String comandoOriginal 
+		 String parametro=null;
 		    for (Aplicacion a : ControladorLayout.aplicaciones){
 		    	if(a.getName().equals(app)){
 		    		for (Configuracion c : a.getConfiguraciones()){
@@ -210,15 +202,17 @@ public class Layout extends JPanel {
 		System.out.println("++++++++++ EL COMANDO ES " + parametro);
 			//CAMBIO ESTE METODO POR EL DE ABAJO, PARA PODER usar otro comando que no sea el ffmpeg
 			//InvocarComando.ffmpeg(parametro, inputs);
-		InvocarComando.invocarComando(comando,parametro,inputs);
+			FrameConsola frameConsola = new FrameConsola();
+			InvocarComando.invocarComando(frameConsola, comando,parametro,inputs);
     
 		}
-		
-        });
-        
-        
-      
-       
+
+			private FrameConsola lanzarFrameConsola() {
+				return new FrameConsola();
+			}
+
+		});
+
         return outer;
     }
 
