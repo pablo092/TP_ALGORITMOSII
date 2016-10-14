@@ -40,22 +40,36 @@ public class InvocarComando {
 		// mete los inputs de la interfaz dentro del comando del XML
 		String comando = "";
 		String[] s = comandoOriginal.split(" ");
-		for (int i = 0; i < s.length; i++) {
-			if (s[i].startsWith("[")) {
+		
 
-				for (Parametro p:inputs) {
-
-					if (s[i].equals(p.getNombreParametro())) {
-
-						comando += " "+'"'+p.getParametro()+'"';
-					}
+		for (String s2 : s){
+			
+			System.out.println(s2);
+			
+			 
+			 if (s2.contains("[")){
+				 
+				 
+				 for (Parametro p : inputs){
+					 
+					 if((s2.equals("["+p.getNombreParametro()+"]"))|(s2.contains(p.getNombreParametro()))){
+						 
+						
+							 
+							 comando += s2.replace("["+p.getNombreParametro()+"]", p.getParametro());
+						 }
+					 
+				 }
+				 
+			 }else{
+				 comando += " " + s2 + " ";
+			 }
+				
 				}
-
-			} else {
-				comando += " " + s[i];
-			}
-		}
+			
+		
 		System.out.println(comando);
+				
 		return comando;
 	}
 }

@@ -15,7 +15,7 @@ public class ControladorLayout implements ActionListener {
 
 	public ControladorLayout(Layout l) {
 		this.cargarAplicaciones();
-	  this.mostrarContenidoApps();
+	  //this.mostrarContenidoApps();
 		this.l = l;
 		this.loadAPIs();
 
