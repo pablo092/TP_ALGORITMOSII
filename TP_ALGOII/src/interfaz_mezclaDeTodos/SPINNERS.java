@@ -40,9 +40,10 @@ public class SPINNERS implements ControladorConstructor {
 		if ((control.getName().equals("DESDE")) | (control.getName().equals("HASTA"))) {
 
 			SpinnerDateModel model = new SpinnerDateModel();
+			model.setCalendarField(Calendar.MINUTE);
 			JSpinner spinner = new JSpinner(model);
-
-			spinner.setEditor(new JSpinner.DateEditor(spinner, "mm:ss "));
+			
+			spinner.setEditor(new JSpinner.DateEditor(spinner, "HH:mm:ss "));
 			spinner.setValue(new Date(0));
 
 			spinner.setPreferredSize(new Dimension(350, 30));

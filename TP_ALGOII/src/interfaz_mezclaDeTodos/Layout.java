@@ -3,10 +3,12 @@ package interfaz_mezclaDeTodos;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Iterator;
-
 import javax.swing.*;
 
 
@@ -174,10 +176,21 @@ public class Layout extends JPanel {
 	        	
 					String inText    = (((JSpinner) cop).getValue()).toString();
 					System.out.println("del spinner : "+ inText);
-					Parametro parametro = new Parametro();     		       		
-	        		parametro.setParametro(inText);
+					Parametro parametro = new Parametro();     
+					if(pc.getControl()!="GRADO"){
+					String [] s = inText.split(" ");
+					for (String s2: s){
+						
+						if(s2.contains(":")){
+							
+							inText= s2;
+						}
+						
+					}
+					}
+					
+					parametro.setParametro(inText);
 		        	parametro.setNombreParametro(pc.getControl());
-		        	
 	        		inputs.add(parametro);
 	        	}
 		     

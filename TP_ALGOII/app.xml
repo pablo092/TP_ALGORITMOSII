@@ -16,7 +16,7 @@
 					<tipo-arch>mp4,</tipo-arch>
 		</control>	
 	</config>	
-		<config name= "AVI" command="\src\comandosExe\ffmpeg\bin\ffmpeg.exe" params="-i [VIDEO] -vf rotate=[GRADO]*PI/180 [OUTPUT]">
+		<config name= "AVI" command="C:\Users\antonella\Documents\GitHub\TP_ALGORITMOSII\TP_ALGOII\src\comandosExe\ffmpeg\bin\ffmpeg.exe" params="-i [VIDEO] -vf rotate=[GRADO]*PI/180 [OUTPUT]">
 		<control name="VIDEO" class="FileChooser" label="Video">
 			<def-dir>C:\Users\antonella\Documents\My Videos</def-dir>
 			<tipo-arch>avi,</tipo-arch>		
@@ -30,7 +30,7 @@
 					<tipo-arch>avi,</tipo-arch>
 		</control>	
 	</config>	
-	<config name= "MPEG" command="\src\comandosExe\ffmpeg\bin\ffmpeg.exe" params="-i [VIDEO] -vf rotate=[GRADO]*PI/180 [OUTPUT]">
+	<config name= "MPEG" command="C:\Users\antonella\Documents\GitHub\TP_ALGORITMOSII\TP_ALGOII\src\comandosExe\ffmpeg\bin\ffmpeg.exe" params="-i [VIDEO] -vf rotate=[GRADO]*PI/180 [OUTPUT]">
 		<control name="VIDEO" class="FileChooser" label="Video">
 			<def-dir>C:\Users\antonella\Documents\My Videos\</def-dir>
 			<tipo-arch>mpeg,</tipo-arch>		
@@ -46,7 +46,7 @@
 	</config>	
 </app>
 <app title="Audio To Video">
-		<config command="\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="WAV+PNG=AVI" params="-i [AUDIO] -max [DURMAX] -loop 1 -i [IMAGE] -vcodec libx264 -preset slow -crf 20 -threads 0 -acodec copy -shortest [VIDEO]">
+		<config command="C:\Users\antonella\Documents\GitHub\TP_ALGORITMOSII\TP_ALGOII\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="WAV+PNG=AVI" params=" -loop 1 -i [IMAGE] -i [AUDIO] -c:v libx264 -tune stillimage -c:a aac -strict experimental -b:a 192k -pix_fmt yuv420p -shortest [VIDEO]">
 			<control name="AUDIO" class="FileChooser" label="Archivo de audio">
 					<def-dir>C:\Users\antonella\Documents\My Videos\</def-dir>
 					<tipo-arch>mp3,wav,wma,</tipo-arch>
@@ -65,7 +65,7 @@
 			</control>
 
 		</config>
-		<config command="\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="WAV+JPG=MKV" params="-i [AUDIO] -max [DURMAX] -loop 1 -i [IMAGE] -vcodec libx264 -preset slow -crf 20 -threads 0 -acodec copy -shortest [VIDEO]">
+		<config command="C:\Users\antonella\Documents\GitHub\TP_ALGORITMOSII\TP_ALGOII\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="WAV+JPG=MKV" params=" -loop 1 -i [IMAGE] -i [AUDIO] -c:v libx264 -tune stillimage -c:a aac -strict experimental -b:a 192k -pix_fmt yuv420p -shortest [VIDEO]">
 			<control name="AUDIO" class="FileChooser" label="Archivo de audio">
 					<def-dir>C:\Users\antonella\Documents\My Videos\</def-dir>
 					<tipo-arch>mp3,wav,wma,</tipo-arch>
@@ -86,7 +86,7 @@
 		</config>
 	</app>
 <app title="Video Extract">
-		<config command="\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="AVI a MP4" params="-i [VIDEO] -ss [DESDE] -to [HASTA] [OUTPUT]">
+		<config command="C:\Users\antonella\Documents\GitHub\TP_ALGORITMOSII\TP_ALGOII\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="AVI a MP4" params=" -i [VIDEO] -ss [DESDE] -c copy -t [HASTA] [OUTPUT]">
 			<control name="VIDEO" class="FileChooser" label="Video">
 				<def-dir>/users/antonella/Mis videos</def-dir>
 				<tipo-arch>mp4,avi,mpeg,</tipo-arch>		
@@ -108,7 +108,7 @@
 	</app>
 
 <app title="JOIN WAVS">
-		<config command="\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="WAV+WAV=WAV" params="-i [1] -i [2] -filter_complex amerge [OUTAUDIO]">
+		<config command="C:\Users\antonella\Documents\GitHub\TP_ALGORITMOSII\TP_ALGOII\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="WAV+WAV=WAV" params="-i [1] -i [2] -filter_complex amerge [OUTAUDIO]">
 			<control name="1" class="FileChooser" label="AUDIO">
 				<def-dir>/users/antonella/Mis canciones</def-dir>
 				<tipo-arch>mp3,wav,</tipo-arch>		
@@ -123,7 +123,7 @@
 		    </control>	
 
 		</config>
-		<config command="\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="TEXT A WAV" params="ffmpeg -f concat -i [Lista] -c copy [OUTAUDIO]">
+		<config command="C:\Users\antonella\Documents\GitHub\TP_ALGORITMOSII\TP_ALGOII\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="TEXT A WAV" params="ffmpeg -f concat -i [Lista] -c copy [OUTAUDIO]">
 			<control name="Lista" class="FileChooser" label="Lista Audios">
 				<def-dir>/users/antonella</def-dir>
 				<tipo-arch>txt,word,</tipo-arch>		
