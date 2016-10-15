@@ -57,7 +57,8 @@ public class InvocarComando {
 						
 							 
 							 comando += s2.replace("["+p.getNombreParametro()+"]", p.getParametro());
-						 }
+					comando += " ";
+					 }
 					 
 				 }
 				 

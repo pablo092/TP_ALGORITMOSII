@@ -2,7 +2,7 @@
 <TP-ACyEDA>
 
 <app title="Video Rotate">
-	<config name= "MP4" command="C:\Users\antonella\Documents\GitHub\TP_ALGORITMOSII\TP_ALGOII\src\comandosExe\ffmpeg\bin\ffmpeg.exe" params="-i [VIDEO] -vf rotate=[GRADO]*PI/180 [OUTVIDEO]">
+	<config name= "MP4" command="C:\Users\antonella\Documents\GitHub\TP_ALGORITMOSII\TP_ALGOII\src\comandosExe\ffmpeg\bin\ffmpeg.exe" params="-i [VIDEO] -vf rotate=[GRADO]*PI/180 [OUTPUT]">
 		<control name="VIDEO" class="FileChooser" label="Video">
 			<def-dir>C:\Users\antonella\Documents\My Videos\</def-dir>
 			<tipo-arch>mp4,avi,mpeg,</tipo-arch>		
@@ -11,12 +11,12 @@
 				<def-value>90</def-value>
 				<regex>([0-9][0-9])|([0-2][0-9][0-9])|(3[0-5][0-9])|360</regex>
 		</control>	
-		<control name= "OUTVIDEO" class="FileChooser" label="Guardar en">
+		<control name= "OUTPUT" class="FileChooser" label="Guardar en">
 				<def-dir>C:\Users\antonella\Documents\My Videos\</def-dir>
 					<tipo-arch>mp4,</tipo-arch>
 		</control>	
 	</config>	
-		<config name= "AVI" command="\src\comandosExe\ffmpeg\bin\ffmpeg.exe" params="-i [VIDEO] -vf rotate=[GRADO]*PI/180 [OUTVIDEO]">
+		<config name= "AVI" command="\src\comandosExe\ffmpeg\bin\ffmpeg.exe" params="-i [VIDEO] -vf rotate=[GRADO]*PI/180 [OUTPUT]">
 		<control name="VIDEO" class="FileChooser" label="Video">
 			<def-dir>C:\Users\antonella\Documents\My Videos</def-dir>
 			<tipo-arch>avi,</tipo-arch>		
@@ -25,12 +25,12 @@
 				<def-value>90</def-value>
 				<regex>([0-9][0-9])|([0-2][0-9][0-9])|(3[0-5][0-9])|360</regex>
 		</control>	
-		<control name= "OUTVIDEO" class="FileChooser" label="Guardar en">
+		<control name= "OUTPUT" class="FileChooser" label="Guardar en">
 					<def-dir>C:\Users\antonella\Documents\My Videos\</def-dir>
 					<tipo-arch>avi,</tipo-arch>
 		</control>	
 	</config>	
-	<config name= "MPEG" command="\src\comandosExe\ffmpeg\bin\ffmpeg.exe" params="-i [VIDEO] -vf rotate=[GRADO]*PI/180 [OUTVIDEO]">
+	<config name= "MPEG" command="\src\comandosExe\ffmpeg\bin\ffmpeg.exe" params="-i [VIDEO] -vf rotate=[GRADO]*PI/180 [OUTPUT]">
 		<control name="VIDEO" class="FileChooser" label="Video">
 			<def-dir>C:\Users\antonella\Documents\My Videos\</def-dir>
 			<tipo-arch>mpeg,</tipo-arch>		
@@ -39,7 +39,7 @@
 				<def-value>90</def-value>
 				<regex>([0-9][0-9])|([0-2][0-9][0-9])|(3[0-5][0-9])|360</regex>
 		</control>	
-		<control name= "OUTVIDEO" class="FileChooser" label="Guardar en">
+		<control name= "OUTPUT" class="FileChooser" label="Guardar en">
 					<def-dir>C:\Users\antonella\Documents\My Videos\</def-dir>
 					<tipo-arch>mpeg,</tipo-arch>
 		</control>	
@@ -86,7 +86,7 @@
 		</config>
 	</app>
 <app title="Video Extract">
-		<config command="\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="AVI a MP4" params="-i [VIDEO] -ss [DESDE] -to [HASTA] [OUTVIDEO]">
+		<config command="\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="AVI a MP4" params="-i [VIDEO] -ss [DESDE] -to [HASTA] [OUTPUT]">
 			<control name="VIDEO" class="FileChooser" label="Video">
 				<def-dir>/users/antonella/Mis videos</def-dir>
 				<tipo-arch>mp4,avi,mpeg,</tipo-arch>		
@@ -99,7 +99,7 @@
 					<minutos>([0-5][0-9])|60</minutos>
 					<segundos>([0-5][0-9])|60</segundos>
 			</control>
-			<control name="OUTVIDEO" class="FileChooser" label="Guardar en">
+			<control name="OUTPUT" class="FileChooser" label="Guardar en">
 				<def-dir>/users/antonella/Mis videos</def-dir>
 				<tipo-arch>mp4,avi,mpeg,</tipo-arch>		
 		    </control>	
@@ -108,12 +108,12 @@
 	</app>
 
 <app title="JOIN WAVS">
-		<config command="\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="WAV+WAV=WAV" params="-i [AUDIO1] -i [AUDIO2] -filter_complex amerge [OUTAUDIO]">
-			<control name="AUDIO1" class="FileChooser" label="AUDIO">
+		<config command="\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="WAV+WAV=WAV" params="-i [1] -i [2] -filter_complex amerge [OUTAUDIO]">
+			<control name="1" class="FileChooser" label="AUDIO">
 				<def-dir>/users/antonella/Mis canciones</def-dir>
 				<tipo-arch>mp3,wav,</tipo-arch>		
 		    </control>	
-			<control name="AUDIO2" class="FileChooser" label="AUDIO 2">
+			<control name="2" class="FileChooser" label="AUDIO 2">
 				<def-dir>/users/antonella/Mis canciones</def-dir>
 				<tipo-arch>mp3,wav,</tipo-arch>		
 		    </control>	
@@ -123,8 +123,8 @@
 		    </control>	
 
 		</config>
-		<config command="\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="TEXT A WAV" params="ffmpeg -f concat -i [ListaAudios] -c copy [OUTAUDIO]">
-			<control name="ListaAudios" class="FileChooser" label="Lista Audios">
+		<config command="\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="TEXT A WAV" params="ffmpeg -f concat -i [Lista] -c copy [OUTAUDIO]">
+			<control name="Lista" class="FileChooser" label="Lista Audios">
 				<def-dir>/users/antonella</def-dir>
 				<tipo-arch>txt,word,</tipo-arch>		
 		    </control>				
