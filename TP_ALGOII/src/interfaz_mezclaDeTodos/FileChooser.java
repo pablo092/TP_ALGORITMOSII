@@ -130,7 +130,7 @@ public class FileChooser implements ControladorConstructor{
 			}
 			
 			
-			tf.setText(fichero);
+			tf.setText('"' + fichero + '"');
 				
 		
 			fc.resetChoosableFileFilters();

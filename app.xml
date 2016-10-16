@@ -109,15 +109,15 @@
 
 <app title="JOIN WAVS">
 		<config command="TP_ALGOII\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="WAV+WAV=WAV" params="-i [AUDIO1] -i [AUDIO2] -filter_complex amerge [OUTAUDIO]">
-			<control name="[AUDIO1]" class="FileChooser" label="AUDIO 1">
+			<control name="AUDIO1" class="FileChooser" label="AUDIO 1">
 				<def-dir>/users/antonella/Mis canciones</def-dir>
 				<tipo-arch>mp3,wav,</tipo-arch>		
 		    </control>	
-			<control name="[AUDIO2]" class="FileChooser" label="AUDIO 2">
+			<control name="AUDIO2" class="FileChooser" label="AUDIO 2">
 				<def-dir>/users/antonella/Mis canciones</def-dir>
 				<tipo-arch>mp3,wav,</tipo-arch>		
 		    </control>	
-			<control name="[OUTAUDIO]" class="Textfield" label="Guardar en">
+			<control name="OUTAUDIO" class="Textfield" label="Guardar en">
 			</control>
 
 		</config>
