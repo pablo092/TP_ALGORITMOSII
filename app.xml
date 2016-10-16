@@ -117,10 +117,8 @@
 				<def-dir>/users/antonella/Mis canciones</def-dir>
 				<tipo-arch>mp3,wav,</tipo-arch>		
 		    </control>	
-			<control name="[OUTAUDIO]" class="FileChooser" label="Guardar en">
-				<def-dir>/users/antonella/Mis canciones</def-dir>
-				<tipo-arch>mp3,wav,</tipo-arch>		
-		    </control>	
+			<control name="[OUTAUDIO]" class="Textfield" label="Guardar en">
+			</control>
 
 		</config>
 		<config command="TP_ALGOII\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="TEXT A WAV" params="-f concat -i [ListaAudios] -c copy [OUTAUDIO]">
@@ -137,7 +135,7 @@
 	</app>
 	<app title="Exiftool">
 		<config command="TP_ALGOII\src\comandosExe\exiftool.exe" name="Basico" params="-common [IMAGEN]">
-			<control name="[IMAGEN]" class="FileChooser" label="Imagen">
+			<control name="IMAGEN" class="FileChooser" label="Imagen">
 				<def-dir>C:\Users\user\Desktop\RUGBY 2016</def-dir>
 				<tipo-arch>jpg,png,</tipo-arch>
 			</control>
