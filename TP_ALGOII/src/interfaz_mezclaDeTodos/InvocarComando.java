@@ -18,9 +18,9 @@ public class InvocarComando {
 				try {
 					p = Runtime.getRuntime().exec(directorioDelComando + " " + lineaComando); 
 					FrameConsola fc=new FrameConsola();
-					BufferedReader input = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+					BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
 					while ((line = input.readLine()) != null) {
-						fc.agregarLineas(line);
+						fc.agregarLineas(line+'\n');
 					}
 					fc.procesoTerminado();
 					input.close();
