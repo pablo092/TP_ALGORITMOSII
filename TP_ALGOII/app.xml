@@ -46,7 +46,7 @@
 	</config>	
 </app>
 <app title="Audio To Video">
-		<config command="C:\Users\antonella\Documents\GitHub\TP_ALGORITMOSII\TP_ALGOII\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="WAV+PNG=AVI" params=" -loop 1 -i [IMAGE] -i [AUDIO] -c:v libx264 -tune stillimage -c:a aac -strict experimental -b:a 192k -pix_fmt yuv420p -shortest [VIDEO]">
+		<config  command="C:\Users\antonella\Documents\GitHub\TP_ALGORITMOSII\TP_ALGOII\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="WAV+PNG=AVI" params=" -loop 1 -i [IMAGE] -i [AUDIO] -c:v libx264 -tune stillimage -c:a aac -strict experimental -b:a 192k -pix_fmt yuv420p -shortest [VIDEO]">
 			<control name="AUDIO" class="FileChooser" label="Archivo de audio">
 					<def-dir>C:\Users\antonella\Documents\My Videos\</def-dir>
 					<tipo-arch>mp3,wav,wma,</tipo-arch>
@@ -108,7 +108,7 @@
 	</app>
 
 <app title="JOIN WAVS">
-		<config command="C:\Users\antonella\Documents\GitHub\TP_ALGORITMOSII\TP_ALGOII\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="WAV+WAV=WAV" params="-i [1] -i [2] -filter_complex amerge [OUTAUDIO]">
+		<config command=" " name="WAV+WAV=WAV" params="copy /b [1] + [2] [OUTAUDIO]">
 			<control name="1" class="FileChooser" label="AUDIO">
 				<def-dir>/users/antonella/Mis canciones</def-dir>
 				<tipo-arch>mp3,wav,</tipo-arch>		
