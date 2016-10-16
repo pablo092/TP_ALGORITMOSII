@@ -108,7 +108,7 @@
 	</app>
 
 <app title="JOIN WAVS">
-		<config command=" " name="WAV+WAV=WAV" params="copy /b [1] + [2] [OUTAUDIO]">
+		<config command="C:\Users\antonella\Documents\GitHub\TP_ALGORITMOSII\TP_ALGOII\copy.bat " name="WAV+WAV=WAV" params="[1] [2] [OUTAUDIO]">
 			<control name="1" class="FileChooser" label="AUDIO">
 				<def-dir>/users/antonella/Mis canciones</def-dir>
 				<tipo-arch>mp3,wav,</tipo-arch>		
