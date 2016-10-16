@@ -10,9 +10,9 @@ import java.util.List;
  */
 public class FrameConsola extends JPanel {
 	private JFrame frame;
-	private JButton button;
 	private JTextArea textArea;
 	private List<String> lineas = new ArrayList<String>();
+	private boolean completado=false;
 	/*
 	 * static public void main(String[] a){ new FrameConsola(); }
 	 */
@@ -50,13 +50,33 @@ public class FrameConsola extends JPanel {
 				textArea.append(linea);
 			}
 		}
+		
+		JProgressBar progressBar;
+		progressBar = new JProgressBar(0, 100);
+		progressBar.setIndeterminate(true);
+		
+		if(completado){
+			progressBar.setIndeterminate(false);
+			progressBar.setValue(100);
+			progressBar.setStringPainted(true);;
+		}
+		
 		outer.add(inner);
+		outer.add(progressBar);
 		this.add(outer);
 
 	}
 
 	public void agregarLineas(String l) {
 		lineas.add(l);
+		this.removeAll();
+		this.agregarPaneles();
+		this.revalidate();
+		this.repaint(getVisibleRect());
+	}
+	
+	public void procesoTerminado(){
+		this.setCompletado(true);
 		this.removeAll();
 		this.agregarPaneles();
 		this.revalidate();
@@ -71,12 +91,12 @@ public class FrameConsola extends JPanel {
 		this.textArea = textArea;
 	}
 
-	public JButton getButton() {
-		return button;
+	public boolean isCompletado() {
+		return completado;
 	}
 
-	public void setButton(JButton button) {
-		this.button = button;
+	public void setCompletado(boolean completado) {
+		this.completado = completado;
 	}
 
 }
