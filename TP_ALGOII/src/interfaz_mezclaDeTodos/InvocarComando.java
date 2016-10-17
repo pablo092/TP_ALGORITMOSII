@@ -8,7 +8,7 @@ import javafx.concurrent.Task;
 
 public class InvocarComando {
 
-	public static void invocarComando (String directorioDelComando, String lineaAEjecutar, List<Parametro> inputs) {
+	public static void invocarComando(String directorioDelComando, String lineaAEjecutar, List<Parametro> inputs) {
 
 		String lineaComando = parsearComando(lineaAEjecutar, inputs);
 		new Thread(new Runnable() {
@@ -16,21 +16,27 @@ public class InvocarComando {
 				Process p;
 				String line;
 				try {
-					p = Runtime.getRuntime().exec(directorioDelComando + " " + lineaComando); 
-					FrameConsola fc=new FrameConsola();
+					p = Runtime.getRuntime().exec(directorioDelComando + " " + lineaComando);
+					FrameConsola fc = new FrameConsola();
 					BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
-					while ((line = input.readLine()) != null) {
-						fc.agregarLineas(line+'\n');
+					/*  VER SI ES NECESARIO !fc.IsInterrumpir()->sino sacar */
+					while ((line = input.readLine()) != null && !fc.isInterrumpir()) {
+						fc.agregarLineas(line + '\n');
 					}
+					/* VER SI HACE FALTA ESTE IF, SINO SACAR*/
+					if(fc.isInterrumpir()){
+						p.waitFor();
+					}
+					/* */
+					
 					fc.procesoTerminado();
 					input.close();
-				} catch (IOException e) {
+				} catch (IOException | InterruptedException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 			}
 		}).start();
-		
 
 	}
 

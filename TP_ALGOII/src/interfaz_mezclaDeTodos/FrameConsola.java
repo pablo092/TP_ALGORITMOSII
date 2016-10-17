@@ -2,6 +2,8 @@ package interfaz_mezclaDeTodos;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +15,7 @@ public class FrameConsola extends JPanel {
 	private JTextArea textArea;
 	private List<String> lineas = new ArrayList<String>();
 	private boolean completado=false;
+	private boolean interrumpir=false;
 	/*
 	 * static public void main(String[] a){ new FrameConsola(); }
 	 */
@@ -61,9 +64,23 @@ public class FrameConsola extends JPanel {
 			progressBar.setStringPainted(true);;
 		}
 		
+		JButton btn= new JButton("Cancelar");
+		btn.setPreferredSize(new Dimension(100, 32));
+		btn.setAlignmentX(CENTER_ALIGNMENT);
+		
 		outer.add(inner);
 		outer.add(progressBar);
+		outer.add(btn);
 		this.add(outer);
+		
+		
+		/*                               VER SI SIRVE                               */
+		btn.addActionListener(new ActionListener(){
+			@Override
+			public void actionPerformed(ActionEvent arg0) {
+				setInterrumpir(true);
+			}
+		});
 
 	}
 
@@ -97,6 +114,14 @@ public class FrameConsola extends JPanel {
 
 	public void setCompletado(boolean completado) {
 		this.completado = completado;
+	}
+
+	public boolean isInterrumpir() {
+		return interrumpir;
+	}
+
+	public void setInterrumpir(boolean interrumpir) {
+		this.interrumpir = interrumpir;
 	}
 
 }
