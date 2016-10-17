@@ -2,7 +2,7 @@ package excepction;
 
 import java.io.Serializable;
 
-public class ExcepcionControlada implements Serializable {
+public class ExcepcionControlada extends Exception implements Serializable {
 
 	private static final long serialVersionUID = 4187601604699447348L;
 	

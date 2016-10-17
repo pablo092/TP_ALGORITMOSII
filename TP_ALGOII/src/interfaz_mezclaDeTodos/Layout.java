@@ -11,6 +11,9 @@ import java.util.Date;
 import java.util.Iterator;
 import javax.swing.*;
 
+import excepction.ExcepcionControlada;
+import excepction.ExcepcionControladaError;
+
 
 public class Layout extends JPanel {
 
@@ -36,10 +39,15 @@ public class Layout extends JPanel {
         this.setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
         this.setMaximumSize(new Dimension(450, 200));
 		this.setPreferredSize(new Dimension(450, 200));
-        this.agregarPaneles();
+        try {
+			this.agregarPaneles();
+		} catch (ExcepcionControlada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
     }
     
-    public void agregarPaneles(){
+    public void agregarPaneles() throws ExcepcionControlada{
     	this.add(createIntroduc());
     	JPanel outer=new JPanel();
 		outer.setLayout(new FlowLayout(FlowLayout.CENTER));
@@ -53,8 +61,7 @@ public class Layout extends JPanel {
 
 					controlador.contruiYAgregaA(control, outer, fields,comboAPIs);
 				} catch (InstantiationException | IllegalAccessException | ClassNotFoundException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					throw new ExcepcionControladaError("Ocurrio un invonveniente con el control");
 				}
         	}
         }
@@ -241,7 +248,7 @@ public class Layout extends JPanel {
         f.setVisible(true);
     }
 
-	public void mostrarControles(List<Control> controls){
+	public void mostrarControles(List<Control> controls) throws ExcepcionControlada{
 		controles.clear();
 		controles.addAll(controls);
 		this.removeAll();

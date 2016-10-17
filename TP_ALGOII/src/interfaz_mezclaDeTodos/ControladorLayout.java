@@ -5,6 +5,8 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import excepction.ExcepcionControlada;
+
 public class ControladorLayout implements ActionListener {
 	Layout l = new Layout();
 	public static List<Aplicacion> aplicaciones = new ArrayList<Aplicacion>();
@@ -14,15 +16,20 @@ public class ControladorLayout implements ActionListener {
 	Boolean tieneConfigsCargadas = false;
 
 	public ControladorLayout(Layout l) {
-		this.cargarAplicaciones();
-	  //this.mostrarContenidoApps();
-		this.l = l;
-		this.loadAPIs();
+		try {
+			this.cargarAplicaciones();
+			  //this.mostrarContenidoApps();
+			this.l = l;
+			this.loadAPIs();
 
-		l.getComboAPIs().addActionListener(this);
-		l.getComboConfigs().addActionListener(this);
-		// l.getBtnDestino().addActionListener(this);
-		// l.getBtnComenzar().addActionListener(this);
+			l.getComboAPIs().addActionListener(this);
+			l.getComboConfigs().addActionListener(this);
+			// l.getBtnDestino().addActionListener(this);
+			// l.getBtnComenzar().addActionListener(this);
+		} catch (ExcepcionControlada e) {
+			e.printStackTrace();
+		}
+
 
 	}
 
@@ -45,7 +52,11 @@ public class ControladorLayout implements ActionListener {
 				for (Configuracion c : app.getConfiguraciones()) {
 					if (l.getComboConfigs().getSelectedItem().equals(c.getNombre())) {
 						conf=c;
-						l.mostrarControles(c.getControls());
+						try {
+							l.mostrarControles(c.getControls());
+						} catch (ExcepcionControlada e) {
+							e.printStackTrace();
+						}
 					}
 				}
 			} else {
@@ -60,7 +71,11 @@ public class ControladorLayout implements ActionListener {
 						l.loadConfigs(app.getConfiguraciones());
 						l.getComboConfigs().addActionListener(this);
 						conf=app.getConfiguraciones().get(0);
-						l.mostrarControles(app.getConfiguraciones().get(0).getControls());
+						try {
+							l.mostrarControles(app.getConfiguraciones().get(0).getControls());
+						} catch (ExcepcionControlada e) {
+							e.printStackTrace();
+						}
 						}
 					
 					}
@@ -78,7 +93,7 @@ public class ControladorLayout implements ActionListener {
 		}
 	}
 
-	public void cargarAplicaciones() {
+	public void cargarAplicaciones() throws ExcepcionControlada {
 		new ParseoXML().parseoXMLs(aplicaciones);
 	}
 

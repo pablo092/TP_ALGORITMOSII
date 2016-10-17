@@ -13,7 +13,10 @@ import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
-import org.xml.sax.SAXException;;
+import org.xml.sax.SAXException;
+
+import excepction.ExcepcionControlada;
+import excepction.ExcepcionControladaError;;
 
 public class ParseoXML {
 
@@ -30,7 +33,7 @@ public class ParseoXML {
 	static Aplicacion app;
 	ParametroDeControl parametro;
 	Control control;
-	public Aplicacion parseoXMLs(List<Aplicacion> Aplicaciones) {
+	public Aplicacion parseoXMLs(List<Aplicacion> Aplicaciones) throws ExcepcionControlada {
 
 		DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
 		try {
@@ -166,13 +169,11 @@ public class ParseoXML {
 				// end primer if
 			} // end for general
 		} catch (ParserConfigurationException e) {
-			e.printStackTrace();
+			throw new ExcepcionControladaError("No se pudo parsear correctamente el XML");
 		} catch (SAXException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ExcepcionControladaError("Hay un inconveninte con el archivo XML");
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			throw new ExcepcionControladaError("No se pudo leer el archivo de XML");
 		}
 
 		return app;

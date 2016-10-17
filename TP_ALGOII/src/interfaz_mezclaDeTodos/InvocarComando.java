@@ -1,10 +1,11 @@
 package interfaz_mezclaDeTodos;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
-import java.util.regex.Pattern;
 
-import javafx.concurrent.Task;
+import excepction.ExcepcionControlada;
 
 public class InvocarComando {
 
@@ -25,8 +26,11 @@ public class InvocarComando {
 					fc.procesoTerminado();
 					input.close();
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					try {
+						throw new ExcepcionControlada("Ocurrio un error al ejecutar ffmpeg");
+					} catch (ExcepcionControlada e1) {
+						e1.printStackTrace();
+					}
 				}
 			}
 		}).start();

@@ -5,6 +5,7 @@ import controlador.ControladorAbstracto;
 
 
 import controlador.ControladorSetup;
+import excepction.ExcepcionControlada;
 import interfaz_mezclaDeTodos.Aplicacion;
 import interfaz_mezclaDeTodos.Configuracion;
 import interfaz_mezclaDeTodos.ParseoXML;
@@ -25,7 +26,12 @@ public class Main2 {
 		
 		ParseoXML parseo = new ParseoXML();
 		
-		parseo.parseoXMLs(Aplicaciones);
+		try {
+			parseo.parseoXMLs(Aplicaciones);
+		} catch (ExcepcionControlada e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 		
 		ControladorAbstracto cp = new ControladorSetup();
