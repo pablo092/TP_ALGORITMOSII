@@ -55,6 +55,7 @@ public class FileChooser implements ControladorConstructor{
         inner.add(tf);
         fields.add(tf);
         JButton boton=new JButton(">>");
+        
        
         boton.setMaximumSize(new Dimension(50, 32));
         boton.setPreferredSize(new Dimension(50, 32));   
@@ -73,11 +74,10 @@ public class FileChooser implements ControladorConstructor{
 		public void actionPerformed(ActionEvent arg0) {
 
 			JFileChooser fc=new JFileChooser();
-			
 			fc.setFileSelectionMode(JFileChooser.FILES_ONLY);
-			
-			
-		
+			if(control.getName().equals("LISTA")){
+			fc.setMultiSelectionEnabled(true);
+			}
 			ParametroDeControl Parametro = control.getParametrosDeControl().get(0);
 			
 			String dir = Parametro.getDefDir();
@@ -110,6 +110,40 @@ public class FileChooser implements ControladorConstructor{
 			//Si el usuario, pincha en aceptar
 			if(seleccion==JFileChooser.APPROVE_OPTION){
 
+				System.out.print("aprrobe" + control.getName());
+				if(control.getName().equals("LISTA")){
+					System.out.println(control.getName());
+				File ficheros[]=fc.getSelectedFiles();
+					
+					String Lista = "";
+					for(File f: ficheros){
+						
+					Lista+=	f.getPath() +" ";
+					
+					}
+					System.out.println(Lista);
+					
+					tf.setText(Lista);
+						
+					for (ParametrosInterfaz p : interfaz_mezclaDeTodos.ControladorLayout.ParametrosInterfaz){
+						
+						if (comboAPIs.getSelectedItem().equals(p.getApp())){
+							
+							
+							PanelYControl pc = new PanelYControl();
+							
+							pc.setControl(control.getName());
+							pc.setPanel(inner);
+										
+							p.getPaneles().add(pc);
+						};
+						
+						}
+									
+				
+					fc.resetChoosableFileFilters();
+				}else{
+
 				//Seleccionamos el fichero
 				
 				//[VIDEO]
@@ -127,6 +161,8 @@ public class FileChooser implements ControladorConstructor{
 							
 				p.getPaneles().add(pc);
 			};
+			
+			
 			}
 			
 			
@@ -135,15 +171,17 @@ public class FileChooser implements ControladorConstructor{
 		
 			fc.resetChoosableFileFilters();
 			}
+		}
 			}
 				
 		
 		
-         });
          
-	}
+         
+	});
 
 }
 			
+}
 		
 			

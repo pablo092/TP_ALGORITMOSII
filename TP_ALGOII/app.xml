@@ -95,7 +95,7 @@
 					<minutos>([0-5][0-9])|60</minutos>
 					<segundos>([0-5][0-9])|60</segundos>
 			</control>
-			<control name= "HASTA" class= "SPINNERS" label= "Hasta">			        
+			<control name= "HASTA" class= "SPINNERS" label= "Duracion Total">			        
 					<minutos>([0-5][0-9])|60</minutos>
 					<segundos>([0-5][0-9])|60</segundos>
 			</control>
@@ -123,14 +123,14 @@
 		    </control>	
 
 		</config>
-		<config command="C:\Users\antonella\Documents\GitHub\TP_ALGORITMOSII\TP_ALGOII\src\comandosExe\ffmpeg\bin\ffmpeg.exe" name="TEXT A WAV" params="ffmpeg -f concat -i [Lista] -c copy [OUTAUDIO]">
-			<control name="Lista" class="FileChooser" label="Lista Audios">
+		<config command="C:\Users\antonella\Documents\GitHub\TP_ALGORITMOSII\TP_ALGOII\src\comandosExe\mp3wrap.exe" name="MP3+WAV+...A MP3" params=" [OUTAUDIO] [LISTA]">
+			<control name="LISTA" class="FileChooser" label="Lista Audios">
 				<def-dir>/users/antonella</def-dir>
-				<tipo-arch>txt,word,</tipo-arch>		
+				<tipo-arch>mp3,wav,</tipo-arch>		
 		    </control>				
 			<control name="OUTAUDIO" class="FileChooser" label="Guardar en">
 				<def-dir>/users/antonella/Mis canciones</def-dir>
-				<tipo-arch>mp3,wav,</tipo-arch>		
+				<tipo-arch>mp3,</tipo-arch>		
 		    </control>	
 
 		</config>
