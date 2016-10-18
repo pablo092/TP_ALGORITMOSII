@@ -10,7 +10,9 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 
+import dialogo.DialogoModal;
 import excepction.ExcepcionControlada;
 import excepction.ExcepcionControladaError;
 
@@ -103,21 +105,63 @@ public class Layout extends JPanel {
 		outer.setPreferredSize(new Dimension(700, 80));
         outer.setAlignmentX(CENTER_ALIGNMENT);
         outer.setLayout(new FlowLayout(FlowLayout.CENTER));
+        
         JButton btnComenzar= new JButton("Comenzar");
-        
         btnComenzar.setPreferredSize(new Dimension(100, 32));
-        
         btnComenzar.setAlignmentX(RIGHT_ALIGNMENT);
          
-        outer.add(btnComenzar);
+        
         
         btnComenzar.addActionListener(new ActionListener(){
-        List<Parametro>	inputs;
-
-		@Override
-		public void actionPerformed(ActionEvent arg0) {
-		inputs= new ArrayList<Parametro>();
-		
+	        List<Parametro>	inputs;
+	
+			@Override
+			public void actionPerformed(ActionEvent event) {
+			inputs= new ArrayList<Parametro>();
+			
+			if(event.getSource() ==  btnComenzar) {
+				
+				JDialog modal = new JDialog();
+				JPanel contentPanel = new JPanel();
+				contentPanel.setBorder(new EmptyBorder(5, 5, 5, 5));
+					
+				modal.setTitle("Estado del proceso");
+				modal.setVisible(true);
+				modal.setModal(true);
+				modal.setBounds(100, 100, 450, 300);
+				modal.getContentPane().setLayout(new BorderLayout());
+				modal.getContentPane().add(contentPanel, BorderLayout.CENTER);
+				modal.setLayout(null);
+				
+				JTextField textField = new JTextField();
+				textField.setBounds(10, 11, 414, 206);
+				textField.setColumns(10);
+				
+				JButton btnCancelar = new JButton("Cancel");
+				btnCancelar.setActionCommand("Cancel");
+				btnCancelar.setBounds(310, 228, 97, 23);
+				
+				contentPanel.add(textField);
+				contentPanel.add(btnCancelar);
+				
+				btnCancelar.addActionListener(new ActionListener() {
+					@Override
+					public void actionPerformed(ActionEvent e) {
+						//PAUSAR EL PROCESO
+						JOptionPane.showMessageDialog(null, "¿Desea cancelar el proceso?", "Confirmar", JOptionPane.YES_NO_OPTION);
+						int selection = JOptionPane.YES_NO_OPTION;
+						/* YES = 0 ; NO = 1; cerrar ventana = -1*/
+						if(selection == 0) {
+							//si elige YES termina todo
+						} else {
+							// sino vuelve a reanudar el proceso
+						}
+					}
+				
+			});
+			
+		}
+		outer.add(btnComenzar);
 		String app=	(String) comboAPIs.getSelectedItem();
 		String conf =(String) comboConfigs.getSelectedItem();
 		String comando = null;
@@ -136,75 +180,73 @@ public class Layout extends JPanel {
 			
 		}
 		
-		Iterator<PanelYControl> pcc =paneles.iterator();
-		
-		 while (pcc.hasNext()){
+			Iterator<PanelYControl> pcc = paneles.iterator();
 
-		 	PanelYControl pc= pcc.next();
-			Component[] components = pc.getPanel().getComponents();
-		    		
-				for(Component cop : components){
+			while (pcc.hasNext()) {
 
-		    	System.out.println(cop.getClass().getName());
+				PanelYControl pc = pcc.next();
+				Component[] components = pc.getPanel().getComponents();
 
-		        if((cop.getClass().getName()).equals("javax.swing.JTextField")){
-		        	
-		        	String inText    = ((JTextField) cop).getText();
-		        		System.out.println("del tf : "+ inText);
+				for (Component cop : components) {
 
-		        		Parametro parametro = new Parametro();     		       		
-		        		parametro.setParametro(inText);
-			        	parametro.setNombreParametro(pc.getControl());
-			        	
-		        		inputs.add(parametro);
-		        	}
-		        if((cop.getClass().getName()).equals("javax.swing.JComboBox")){
-		        		
-						String inText    = (String)((JComboBox<String>) cop).getSelectedItem();
-						System.out.println("del cb : "+ inText);
-						Parametro parametro = new Parametro();     		       		
-		        		parametro.setParametro(inText);
-			        	parametro.setNombreParametro(pc.getControl());
-			        	
-		        		inputs.add(parametro);
-		        	}
-		        if((cop.getClass().getName()).equals("javax.swing.JFileChooser")){
-		        	
-					String inText    = ((JFileChooser) cop).getSelectedFile().getPath();
-	        		System.out.println("del fc : "+ inText);
-	        		Parametro parametro = new Parametro();     		       		
-	        		parametro.setParametro(inText);
-		        	parametro.setNombreParametro(pc.getControl());
-		        	
-	        		inputs.add(parametro);
-	        	}
-		        
-		        if((cop.getClass().getName()).equals("javax.swing.JSpinner")){
-	        	
-					String inText    = (((JSpinner) cop).getValue()).toString();
-					System.out.println("del spinner : "+ inText);
-					Parametro parametro = new Parametro();     
-					if(pc.getControl()!="GRADO"){
-					String [] s = inText.split(" ");
-					for (String s2: s){
-						
-						if(s2.contains(":")){
-							
-							inText= s2;
+					System.out.println(cop.getClass().getName());
+
+					if ((cop.getClass().getName()).equals("javax.swing.JTextField")) {
+
+						String inText = ((JTextField) cop).getText();
+						System.out.println("del tf : " + inText);
+
+						Parametro parametro = new Parametro();
+						parametro.setParametro(inText);
+						parametro.setNombreParametro(pc.getControl());
+
+						inputs.add(parametro);
+					}
+					if ((cop.getClass().getName()).equals("javax.swing.JComboBox")) {
+
+						String inText = (String) ((JComboBox<String>) cop).getSelectedItem();
+						System.out.println("del cb : " + inText);
+						Parametro parametro = new Parametro();
+						parametro.setParametro(inText);
+						parametro.setNombreParametro(pc.getControl());
+
+						inputs.add(parametro);
+					}
+					if ((cop.getClass().getName()).equals("javax.swing.JFileChooser")) {
+
+						String inText = ((JFileChooser) cop).getSelectedFile().getPath();
+						System.out.println("del fc : " + inText);
+						Parametro parametro = new Parametro();
+						parametro.setParametro(inText);
+						parametro.setNombreParametro(pc.getControl());
+
+						inputs.add(parametro);
+					}
+
+					if ((cop.getClass().getName()).equals("javax.swing.JSpinner")) {
+
+						String inText = (((JSpinner) cop).getValue()).toString();
+						System.out.println("del spinner : " + inText);
+						Parametro parametro = new Parametro();
+						if (pc.getControl() != "GRADO") {
+							String[] s = inText.split(" ");
+							for (String s2 : s) {
+
+								if (s2.contains(":")) {
+
+									inText = s2;
+								}
+
+							}
 						}
-						
+
+						parametro.setParametro(inText);
+						parametro.setNombreParametro(pc.getControl());
+						inputs.add(parametro);
 					}
-					}
-					
-					parametro.setParametro(inText);
-		        	parametro.setNombreParametro(pc.getControl());
-	        		inputs.add(parametro);
-	        	}
-		     
-		    }
-		    			
-		    		
-		 }
+				}
+
+			}
 		 String parametro=null;
 		    for (Aplicacion a : ControladorLayout.aplicaciones){
 		    	if(a.getName().equals(app)){
@@ -223,9 +265,9 @@ public class Layout extends JPanel {
 			//CAMBIO ESTE METODO POR EL DE ABAJO, PARA PODER usar otro comando que no sea el ffmpeg
 			//InvocarComando.ffmpeg(parametro, inputs);
 			InvocarComando.invocarComando(comando,parametro,inputs);
-    
+	
 		}
-
+	
 		});
 
         return outer;

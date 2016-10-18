@@ -9,6 +9,10 @@ import java.util.List;
  * Created by user on 10/10/2016.
  */
 public class FrameConsola extends JPanel {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 7409182116120084294L;
 	private JFrame frame;
 	private JTextArea textArea;
 	private List<String> lineas = new ArrayList<String>();
@@ -58,7 +62,7 @@ public class FrameConsola extends JPanel {
 		if(completado){
 			progressBar.setIndeterminate(false);
 			progressBar.setValue(100);
-			progressBar.setStringPainted(true);;
+			progressBar.setStringPainted(true);
 		}
 		
 		outer.add(inner);

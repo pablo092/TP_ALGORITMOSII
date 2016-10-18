@@ -102,7 +102,7 @@ public class ControladorLayout implements ActionListener {
 	}
 
 	public void setAplicaciones(List<Aplicacion> aplicaciones) {
-		this.aplicaciones = aplicaciones;
+		ControladorLayout.aplicaciones = aplicaciones;
 	}
 	
 	public void mostrarContenidoApps (){
