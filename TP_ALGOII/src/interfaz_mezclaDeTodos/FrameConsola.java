@@ -61,7 +61,11 @@ public class FrameConsola extends JPanel {
 		if(completado){
 			progressBar.setIndeterminate(false);
 			progressBar.setValue(100);
-			progressBar.setStringPainted(true);;
+			progressBar.setStringPainted(true);
+		}
+		if(interrumpir){
+			progressBar.setIndeterminate(false);
+			progressBar.setStringPainted(false);
 		}
 		
 		JButton btn= new JButton("Cancelar");

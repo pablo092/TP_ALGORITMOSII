@@ -19,19 +19,19 @@ public class InvocarComando {
 					p = Runtime.getRuntime().exec(directorioDelComando + " " + lineaComando);
 					FrameConsola fc = new FrameConsola();
 					BufferedReader input = new BufferedReader(new InputStreamReader(p.getInputStream()));
-					/*  VER SI ES NECESARIO !fc.IsInterrumpir()->sino sacar */
-					while ((line = input.readLine()) != null && !fc.isInterrumpir()) {
+					BufferedReader error = new BufferedReader(new InputStreamReader(p.getErrorStream()));
+					while ((line = error.readLine()) != null && !fc.isInterrumpir()) {
 						fc.agregarLineas(line + '\n');
 					}
-					/* VER SI HACE FALTA ESTE IF, SINO SACAR*/
-					if(fc.isInterrumpir()){
-						p.waitFor();
+					if(!fc.isInterrumpir()){
+						while ((line = input.readLine()) != null && !fc.isInterrumpir()) {
+							fc.agregarLineas(line + '\n');
+						}
 					}
-					/* */
-					
+					p.destroy();
 					fc.procesoTerminado();
 					input.close();
-				} catch (IOException | InterruptedException e) {
+				} catch (IOException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
