@@ -12,6 +12,7 @@ public class ControladorLayout implements ActionListener {
 	Aplicacion app = new Aplicacion();
 	Configuracion conf = new Configuracion();
 	Boolean tieneConfigsCargadas = false;
+	public static String UltimoDir = "";
 
 	public ControladorLayout(Layout l) {
 		this.cargarAplicaciones();

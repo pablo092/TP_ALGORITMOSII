@@ -21,15 +21,15 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import interfaz_mezclaDeTodos.Layout;
 
-
 import interfaz_mezclaDeTodos.ControladorLayout;;
 
 
 public class FileChooser implements ControladorConstructor{
-
+	
+	
 	@Override
 	public void contruiYAgregaA(Control control, JPanel panel,List<JTextField> fields,JComboBox<String> comboAPIs) {
-	
+	     
 		JPanel inner = new JPanel();
 		JPanel inner2 = new JPanel();
 		JPanel inner3 = new JPanel();
@@ -80,13 +80,22 @@ public class FileChooser implements ControladorConstructor{
 			}
 			ParametroDeControl Parametro = control.getParametrosDeControl().get(0);
 			
+			
 			String dir = Parametro.getDefDir();
 		
 			
 			//Seteamos el valor default	
 			
-			fc.setCurrentDirectory((new java.io.File(dir)));
+			
+			if (ControladorLayout.UltimoDir.equals("")){
+			fc.setCurrentDirectory((new java.io.File(dir)));}
+			else{
+				fc.setCurrentDirectory((new java.io.File(ControladorLayout.UltimoDir)));
 				
+			}
+				
+			
+			
 			//Creamos el filtro
 			
 			
@@ -110,7 +119,7 @@ public class FileChooser implements ControladorConstructor{
 			//Si el usuario, pincha en aceptar
 			if(seleccion==JFileChooser.APPROVE_OPTION){
 
-				System.out.print("aprrobe" + control.getName());
+				
 				if(control.getName().equals("LISTA")){
 					System.out.println(control.getName());
 				File ficheros[]=fc.getSelectedFiles();
@@ -124,7 +133,9 @@ public class FileChooser implements ControladorConstructor{
 					System.out.println(Lista);
 					
 					tf.setText(Lista);
-						
+					
+					ControladorLayout.UltimoDir= ficheros[0].getParent();
+					
 					for (ParametrosInterfaz p : interfaz_mezclaDeTodos.ControladorLayout.ParametrosInterfaz){
 						
 						if (comboAPIs.getSelectedItem().equals(p.getApp())){
@@ -134,8 +145,18 @@ public class FileChooser implements ControladorConstructor{
 							
 							pc.setControl(control.getName());
 							pc.setPanel(inner);
-										
-							p.getPaneles().add(pc);
+							boolean esta=false;
+							
+							for(PanelYControl pc2: p.getPaneles()){
+							
+							if	(pc2.getControl().equals(pc.getControl())){
+								
+								esta=true;
+							}
+							}	
+								
+							if(!esta)
+								p.getPaneles().add(pc);
 						};
 						
 						}
@@ -145,21 +166,34 @@ public class FileChooser implements ControladorConstructor{
 				}else{
 
 				//Seleccionamos el fichero
-				
+				PanelYControl pc = new PanelYControl();
 				//[VIDEO]
 				String fichero=fc.getSelectedFile().getPath();
 				
+				ControladorLayout.UltimoDir= fc.getSelectedFile().getParent();
 			for (ParametrosInterfaz p : interfaz_mezclaDeTodos.ControladorLayout.ParametrosInterfaz){
 				
 			if (comboAPIs.getSelectedItem().equals(p.getApp())){
 				
-				
-				PanelYControl pc = new PanelYControl();
+						
 				
 				pc.setControl(control.getName());
 				pc.setPanel(inner);
-							
-				p.getPaneles().add(pc);
+				boolean esta=false;
+				
+				for(PanelYControl pc2: p.getPaneles()){
+				
+				if	(pc2.getControl().equals(pc.getControl())){
+					System.out.println("ya lo tien"+control.getName());
+					esta=true;
+				}
+				}	
+					
+				if(!esta)
+					p.getPaneles().add(pc);
+					
+					
+				
 			};
 			
 			

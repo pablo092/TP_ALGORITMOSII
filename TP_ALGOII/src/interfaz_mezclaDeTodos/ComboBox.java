@@ -50,7 +50,18 @@ public abstract class ComboBox implements ControladorConstructor{
 				pc.setControl(control.getName());
 				pc.setPanel(inner);	
 				
-				p1.getPaneles().add(pc);
+				boolean esta=false;
+				
+				for(PanelYControl pc2: p1.getPaneles()){
+				
+				if	(pc2.getControl().equals(pc.getControl())){
+					System.out.println("ya lo tien"+control.getName());
+					esta=true;
+				}
+				}	
+					
+				if(!esta)
+					p1.getPaneles().add(pc);
 				
 			};
 		}

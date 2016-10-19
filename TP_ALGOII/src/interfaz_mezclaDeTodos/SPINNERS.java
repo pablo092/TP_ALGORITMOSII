@@ -81,7 +81,18 @@ public class SPINNERS implements ControladorConstructor {
 				pc.setControl(control.getName());
 				pc.setPanel(inner);
 
-				p.getPaneles().add(pc);
+				boolean esta=false;
+				
+				for(PanelYControl pc2: p.getPaneles()){
+				
+				if	(pc2.getControl().equals(pc.getControl())){
+					System.out.println("ya lo tien"+control.getName());
+					esta=true;
+				}
+				}	
+					
+				if(!esta)
+					p.getPaneles().add(pc);
 
 			}
 			
