@@ -1,11 +1,13 @@
 package control;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.List;
-import java.util.regex.Pattern;
+
+import javax.swing.JOptionPane;
 
 import estructuras.Parametro;
-import javafx.concurrent.Task;
 import vistas.FrameConsola;
 
 public class InvocarComando {
@@ -33,9 +35,9 @@ public class InvocarComando {
 					p.destroy();
 					fc.procesoTerminado();
 					input.close();
+					JOptionPane.showMessageDialog(null, "Se ha realizado la operación con éxito", "Error", JOptionPane.INFORMATION_MESSAGE);
 				} catch (IOException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+					JOptionPane.showMessageDialog(null, "No se han cargado los parámetros correspondiente", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}).start();
@@ -46,31 +48,34 @@ public class InvocarComando {
 		// mete los inputs de la interfaz dentro del comando del XML
 		String comando = "";
 		String[] s = comandoOriginal.split(" ");
+		if(inputs.isEmpty() || inputs.size() == 0) {
+			return comando;
+		} else {
 
-		for (String s2 : s) {
-
-			System.out.println(s2);
-
-			if (s2.contains("[")) {
-
-				for (Parametro p : inputs) {
-
-					if ((s2.equals("[" + p.getNombreParametro() + "]")) | (s2.contains(p.getNombreParametro()))) {
-
-						comando += s2.replace("[" + p.getNombreParametro() + "]", p.getParametro());
-						comando += " ";
+			for (String s2 : s) {
+	
+				System.out.println(s2);
+	
+				if (s2.contains("[")) {
+	
+					for (Parametro p : inputs) {
+	
+						if ((s2.equals("[" + p.getNombreParametro() + "]")) | (s2.contains(p.getNombreParametro()))) {
+	
+							comando += s2.replace("[" + p.getNombreParametro() + "]", p.getParametro());
+							comando += " ";
+						}
+	
 					}
-
+	
+				} else {
+					comando += " " + s2 + " ";
 				}
-
-			} else {
-				comando += " " + s2 + " ";
+	
 			}
+			System.out.println(comando);
 
+			return comando;
 		}
-
-		System.out.println(comando);
-
-		return comando;
 	}
 }

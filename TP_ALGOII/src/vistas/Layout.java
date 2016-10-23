@@ -1,15 +1,26 @@
 package vistas;
 
-import java.awt.*;
+import java.awt.Component;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.List;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.Iterator;
-import javax.swing.*;
+import java.util.List;
+
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSpinner;
+import javax.swing.JTextField;
 
 import constructoresPaneles.ControladorConstructor;
 import control.ControladorLayout;
@@ -222,11 +233,15 @@ public class Layout extends JPanel {
 		    
 		     
 		}
-		System.out.println("++++++++++ EL COMANDO ES " + parametro);
-			//CAMBIO ESTE METODO POR EL DE ABAJO, PARA PODER usar otro comando que no sea el ffmpeg
-			//InvocarComando.ffmpeg(parametro, inputs);
-			InvocarComando.invocarComando(comando,parametro,inputs);
-    
+			if(parametro != null) {
+				System.out.println("++++++++++ EL COMANDO ES " + parametro);
+				//CAMBIO ESTE METODO POR EL DE ABAJO, PARA PODER usar otro comando que no sea el ffmpeg
+				//InvocarComando.ffmpeg(parametro, inputs);
+				InvocarComando.invocarComando(comando,parametro,inputs);
+			} else {
+				JOptionPane.showMessageDialog(null, "No se ha seleccionado una aplicación", "Error", JOptionPane.ERROR_MESSAGE);
+			}
+	    
 		}
 
 		});
