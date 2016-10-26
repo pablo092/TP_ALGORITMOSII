@@ -35,9 +35,9 @@ public class InvocarComando {
 					p.destroy();
 					fc.procesoTerminado();
 					input.close();
-					JOptionPane.showMessageDialog(null, "Se ha realizado la operación con éxito", "Error", JOptionPane.INFORMATION_MESSAGE);
+					JOptionPane.showMessageDialog(null, "Se ha realizado la operación con éxito", "Proceso Finalizado", JOptionPane.INFORMATION_MESSAGE);
 				} catch (IOException e) {
-					JOptionPane.showMessageDialog(null, "No se han cargado los parámetros correspondiente", "Error", JOptionPane.ERROR_MESSAGE);
+					JOptionPane.showMessageDialog(null, "No se han cargado los parámetros correspondientes", "Error", JOptionPane.ERROR_MESSAGE);
 				}
 			}
 		}).start();
