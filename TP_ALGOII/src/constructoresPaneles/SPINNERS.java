@@ -23,6 +23,7 @@ import estructuras.Control;
 import estructuras.PanelYControl;
 import estructuras.ParametrosInterfaz;
 
+import vistas.Layout;
 public class SPINNERS implements ControladorConstructor {
 
 	@Override
@@ -43,7 +44,8 @@ public class SPINNERS implements ControladorConstructor {
 		panel.add(inner2);
 
 		if ((control.getName().equals("DESDE")) | (control.getName().equals("HASTA"))) {
-
+			
+			
 			SpinnerDateModel model = new SpinnerDateModel();
 			JSpinner spinner = new JSpinner(model);
 			
@@ -56,7 +58,9 @@ public class SPINNERS implements ControladorConstructor {
 
 			spinner.setPreferredSize(new Dimension(350, 30));
 			spinner.setMinimumSize(new Dimension(350, 30));
-
+			
+		
+			
 			inner.add(spinner);
 			panel.add(inner);
 		}

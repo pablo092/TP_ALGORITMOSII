@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.List;
 
+import constructoresPaneles.TransFormacion;
 import estructuras.Aplicacion;
 import estructuras.Configuracion;
 import estructuras.Control;
@@ -20,7 +21,7 @@ public class ControladorLayout implements ActionListener {
 	Configuracion conf = new Configuracion();
 	Boolean tieneConfigsCargadas = false;
 	public static String UltimoDir = "";
-
+	
 	public ControladorLayout(Layout l) {
 		this.cargarAplicaciones();
 	  //this.mostrarContenidoApps();

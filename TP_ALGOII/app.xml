@@ -85,7 +85,7 @@
 					<minutos>([0-5][0-9])|60</minutos>
 					<segundos>([0-5][0-9])|60</segundos>
 			</control>
-			<control name= "HASTA" class= "SPINNERS" label= "Duracion Total">			        
+			<control name= "HASTA" class= "SPINNERS" label= "HASTA">			        
 					<minutos>([0-5][0-9])|60</minutos>
 					<segundos>([0-5][0-9])|60</segundos>
 			</control>

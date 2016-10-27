@@ -23,6 +23,7 @@ import javax.swing.JSpinner;
 import javax.swing.JTextField;
 
 import constructoresPaneles.ControladorConstructor;
+import constructoresPaneles.TransFormacion;
 import control.ControladorLayout;
 import control.InvocarComando;
 import estructuras.Aplicacion;
@@ -42,7 +43,7 @@ public class Layout extends JPanel {
 	private JFrame f = new JFrame();
 	public  JComboBox<String> comboAPIs;
 	public JComboBox<String> comboConfigs;
-	
+	public static TransFormacion trans = new TransFormacion();
     private List<JTextField> fields = new ArrayList<JTextField>();
     private List<Control> controles=new ArrayList<Control>();
    
@@ -210,9 +211,23 @@ public class Layout extends JPanel {
 					}
 					}
 					
+					if(pc.getControl().equals("DESDE")){
+						trans.setDesde(inText);
+						
+					}
+					if(pc.getControl().equals("HASTA")){
+					trans.setHasta(inText);
+					
+					String Hasta=	trans.DurTotalAHasta();
+					parametro.setParametro(Hasta);
+					parametro.setNombreParametro(pc.getControl());
+	        		inputs.add(parametro);
+
+					}else{
 					parametro.setParametro(inText);
 		        	parametro.setNombreParametro(pc.getControl());
 	        		inputs.add(parametro);
+	        		}
 	        	}
 		     
 		    }
@@ -233,10 +248,13 @@ public class Layout extends JPanel {
 		    
 		     
 		}
+		    
+	
 			if(parametro != null) {
 				System.out.println("++++++++++ EL COMANDO ES " + parametro);
 				//CAMBIO ESTE METODO POR EL DE ABAJO, PARA PODER usar otro comando que no sea el ffmpeg
 				//InvocarComando.ffmpeg(parametro, inputs);
+				
 				InvocarComando.invocarComando(comando,parametro,inputs);
 			} else {
 				JOptionPane.showMessageDialog(null, "No se ha seleccionado una aplicación", "Error", JOptionPane.ERROR_MESSAGE);
@@ -315,5 +333,4 @@ public class Layout extends JPanel {
 		this.f = f;
 	}
 
-	
 }
